@@ -2,25 +2,15 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<!-- This import is necessary for JDBC -->
-<%@ page import="java.sql.*"%>
-<!-- Database connection and query -->
+<%@include file="init.jsp" %>
 <%
-Connection conn = null;
-ResultSet rset = null;
-String error_msg = "";
-try {
-	Class.forName("com.mysql.jdbc.Driver");
-	// Edit the following to use your endpoint, database name, username, and password
-	conn = DriverManager.getConnection("jdbc:mysql://artemis.cdblqhavwyia.us-west-2.rds.amazonaws.com:3306/artemis","artemis","SuperClass20!4");
-	Statement stmt = conn.createStatement();
-	rset = stmt.executeQuery("SHOW TABLES");
-} catch (SQLException e) {
-	error_msg = e.getMessage();
-    if( conn != null ) {
-        conn.close();
-        }
-}
+	ResultSet rset = null;
+	try {
+		Statement stmt = conn.createStatement();
+		rset = stmt.executeQuery("SHOW TABLES");
+	} catch (SQLException e) {
+		error_msg = e.getMessage();
+	}
 %>
 
 <html>
@@ -45,10 +35,6 @@ try {
             </div>
             
         </div>
-        
-        
-        
-        
         
         <%
 		if(rset != null) {
