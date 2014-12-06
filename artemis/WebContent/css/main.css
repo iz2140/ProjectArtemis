@@ -1,6 +1,7 @@
 @CHARSET "UTF-8";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300,700);
 @import url(http://fonts.googleapis.com/css?family=Asap:700);
+@import url(http://fonts.googleapis.com/css?family=Halant:500);
 
 body {
 	background-color: white;
@@ -18,8 +19,8 @@ h4 {
 	text-transform: uppercase;
 }
 h2 {
-    font-family: 'Open Sans', Arial, sans;
-    font-weight: 700;
+    font-family: 'Halant', serif;
+    font-weight: 500;
     margin-left: 10px;
     color: #74abc7;
 }
@@ -35,9 +36,8 @@ h2 {
 }
 
 .title {
-	font-family: 'Asap', Arial, sans;
-    font-weight: 700;
-    text-transform: uppercase;
+    font-family: 'Halant', serif;
+    font-weight: 500;
     font-size: 150%;
     color: #74abc7;
 }
@@ -102,9 +102,10 @@ input#searchBtn:hover, input#searchBtn:focus {
 }
 
 .mainDiv {
+	overflow: hidden;
 	width:800px;
-	height:100%;
 	margin:0px auto;
+	margin-top: 84px;
 }
 
 /* RESULTS PAGE */
