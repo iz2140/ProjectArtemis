@@ -1,5 +1,5 @@
-<div style="width:800px; height:48px; padding-top: 2px; margin-top: 20px; background-color:#aac3d0;">
+<div style="width:100%; height:200px; padding-top: 2px; margin-top: 20px; background-color:#dbdbdb;">
         <div style="float:left;">
-            <a href="index.jsp"><img src="img/logo.png" style="margin-left:12px;" /></a>
+            
         </div>
 </div>

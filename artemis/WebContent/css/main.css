@@ -102,7 +102,7 @@ input#searchBtn:hover, input#searchBtn:focus {
 }
 
 .mainDiv {
-	
+	overflow: hidden;
 	width:800px;
 	margin:0px auto;
 	margin-top: 84px;
