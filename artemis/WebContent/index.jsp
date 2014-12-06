@@ -66,7 +66,7 @@
                 });
             });
                 
-             
+
     </script>
 </head>
 <body>
@@ -74,11 +74,12 @@
     <div class="mainDiv">
         <div id="map" style="padding-top: 50px; width: 800px; height: 550px;"></div>
     
+
         <div style="width: 800px; height: 400px; padding-top:50px; background-color:#ffffff;">
             <div style="width:540px; margin:0px auto;">
                 <div>
                     <div class="title" style="height:32px;">I am looking for:</div>
-                    
+
                     <form name = "advanced_search" action="results.jsp" method="get">
 				    <input type="checkbox" name="service" value="abortion"> Abortion Services<br>
 				    <input type="checkbox" name="service" value="contraception"> Birth Control/Contraception<br>
@@ -142,12 +143,13 @@
 						<option value="WV">West Virginia</option>
 						<option value="WI">Wisconsin</option>
 						<option value="WY">Wyoming</option>
-					</select>				
+					</select> or <input type="text" placeholder = "Zipcode" name = "zipcode" style="width:100px;">			
 					<br>
 					<br>
 					Age: 
 					<input type="radio" name="age" value="under">Under 18
 					<input type="radio" name="age" value="over">18+
+					<br>
 					<br>
 				    <input type="submit" value="Go">
 					</form>
