@@ -17,12 +17,23 @@
 	    ResultSet rset = null;
 	    ResultSet nset = null;
 	    
-	    String req = request.getParameter("search"); //search param from prev page
-	    req = req.replace("'", "''");
+	    String[] ser = request.getParameterValues("service"); //search param from prev page
+	    for (int i = 0; i < ser.length; i++) {
+	    	System.out.print(ser[i] + "\n");
+	    } 
+	    
+	    String city = request.getParameter("city");
+	    System.out.print(city + "\n");
+	    String state = request.getParameter("st");
+	    System.out.print(state + "\n");
+	    String zipcode = request.getParameter("zipcode");
+	    System.out.print(zipcode + "\n");
+	    String age_to_18 = request.getParameter("age");
+	    System.out.print(age_to_18 + "\n");
 	    
 	    int numResults = 0;
 	    try {
-	        if (request.getParameter("latSW") != null) {
+	        if (request.getParameterValues("service") != null) {
 	        	
 	            /*------------ SEARCH FROM MAPS ------------*/        
 	        	sql = "SELECT *,X(latlong),Y(latlong) FROM Restaurants R LEFT JOIN Neighborhoods N on R.neighborhood=N.nid ";
@@ -42,7 +53,7 @@
 	        
 	            /*------------ SEARCH BY NAME/CATEGORY/NEIGHBORHOOD ------------*/
 	            
-	            sql = "SELECT *,X(latlong),Y(latlong) FROM Restaurants R LEFT JOIN Neighborhoods N ";
+/* 	            sql = "SELECT *,X(latlong),Y(latlong) FROM Restaurants R LEFT JOIN Neighborhoods N ";
 	            sql += "on R.neighborhood=N.nid WHERE R.name LIKE '%" + req + "%' ";
 	            
 	            sql += "OR R.rid IN (select rid from Belongs_To WHERE ";
@@ -56,7 +67,7 @@
 	            pstmt = conn.prepareStatement(sql);
 	            pstmt.clearParameters();
 	            rset = pstmt.executeQuery(); //SQL Query
-	            
+	             */
 	        }
 	        if (rset != null) {
 	        	rset.last();

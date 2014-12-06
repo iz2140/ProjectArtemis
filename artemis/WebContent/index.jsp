@@ -91,7 +91,8 @@
 				 	<input type="checkbox" name="service" value="std"> STD and Sexual Health Services<br>
 				    <br>
 					<br>
-					in: <input type = "text" placeholder = "City" name = "city" style="width:200px;">, <select>
+					in: <input type = "text" placeholder = "City" name = "city" style="width:200px;">, 
+					<select name = "st">
 						<option value="AL">Alabama</option>
 						<option value="AK">Alaska</option>
 						<option value="AZ">Arizona</option>
@@ -143,7 +144,8 @@
 						<option value="WV">West Virginia</option>
 						<option value="WI">Wisconsin</option>
 						<option value="WY">Wyoming</option>
-					</select> or <input type="text" placeholder = "Zipcode" name = "zipcode" style="width:100px;">			
+					</select> or 
+					<input type="text" placeholder = "Zipcode" name = "zipcode" style="width:100px;">			
 					<br>
 					<br>
 					Age: 
