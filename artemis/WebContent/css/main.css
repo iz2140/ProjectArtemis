@@ -206,16 +206,16 @@ a:active {
 
 
 .stars {
-    width: 154px;
-    height: 30px;
+    width: 134px;
+    height: 25px;
     overflow:hidden;
     float:left;
 }
 .starsImg {
     background-image: url('../img/stars.png');
     background-repeat: no-repeat;
-    width: 154px;
-    height: 270px;
+    width: 134px;
+    height: 225px;
 }
 .stars1 {
     position:relative;
@@ -223,35 +223,35 @@ a:active {
 }
 .stars15 {
     position:relative;
-    top: -30px;
+    top: -25px;
 }
 .stars2 {
     position:relative;
-    top: -60px;
+    top: -50px;
 }
 .stars25 {
     position:relative;
-    top: -90px;
+    top: -75px;
 }
 .stars3 {
     position:relative;
-    top: -120px;
+    top: -100px;
 }
 .stars35 {
     position:relative;
-    top: -150px;
+    top: -125px;
 }
 .stars4 {
     position:relative;
-    top: -180px;
+    top: -150px;
 }
 .stars45 {
     position:relative;
-    top: -210px;
+    top: -175px;
 }
 .stars5 {
     position:relative;
-    top: -240px;
+    top: -200px;
 }
 
 
