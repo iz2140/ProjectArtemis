@@ -126,6 +126,81 @@
                     <form name ="dbsearch" action="results.jsp" method="GET" onsubmit="return(submitSearch());">
                     <input type="text" placeholder="restaurant, neighborhood, category or blank for map search" name="search"><input id="searchBtn" type="submit" value="search!">
                     </form>
+                    I am looking for:
+                    
+                    <form name = "advanced_search" action="results.jsp" method="get">
+				    <input type="checkbox" name="service" value="abortion"> Abortion Services<br>
+				    <input type="checkbox" name="service" value="contraception"> Birth Control/Contraception<br>
+				    <input type="checkbox" name="service" value="counseling"> Counseling<br>
+				    <input type="checkbox" name="service" value="domestic_violence"> Domestic Violence<br>
+				 	<input type="checkbox" name="service" value="low_cost"> Low Cost<br>
+				 	<input type="checkbox" name="service" value="pregnancy"> Pregnancy Testing<br>
+				 	<input type="checkbox" name="service" value="sexual_assault"> Sexual Assault<br>
+				 	<input type="checkbox" name="service" value="std"> STD and Sexual Health Services<br>
+				    <br>
+					<br>
+					in: <input type = "text" placeholder = "City" name = "city" style="width:200px;">, <select>
+						<option value="AL">Alabama</option>
+						<option value="AK">Alaska</option>
+						<option value="AZ">Arizona</option>
+						<option value="AR">Arkansas</option>
+						<option value="CA">California</option>
+						<option value="CO">Colorado</option>
+						<option value="CT">Connecticut</option>
+						<option value="DE">Delaware</option>
+						<option value="DC">District Of Columbia</option>
+						<option value="FL">Florida</option>
+						<option value="GA">Georgia</option>
+						<option value="HI">Hawaii</option>
+						<option value="ID">Idaho</option>
+						<option value="IL">Illinois</option>
+						<option value="IN">Indiana</option>
+						<option value="IA">Iowa</option>
+						<option value="KS">Kansas</option>
+						<option value="KY">Kentucky</option>
+						<option value="LA">Louisiana</option>
+						<option value="ME">Maine</option>
+						<option value="MD">Maryland</option>
+						<option value="MA">Massachusetts</option>
+						<option value="MI">Michigan</option>
+						<option value="MN">Minnesota</option>
+						<option value="MS">Mississippi</option>
+						<option value="MO">Missouri</option>
+						<option value="MT">Montana</option>
+						<option value="NE">Nebraska</option>
+						<option value="NV">Nevada</option>
+						<option value="NH">New Hampshire</option>
+						<option value="NJ">New Jersey</option>
+						<option value="NM">New Mexico</option>
+						<option value="NY">New York</option>
+						<option value="NC">North Carolina</option>
+						<option value="ND">North Dakota</option>
+						<option value="OH">Ohio</option>
+						<option value="OK">Oklahoma</option>
+						<option value="OR">Oregon</option>
+						<option value="PA">Pennsylvania</option>
+						<option value="RI">Rhode Island</option>
+						<option value="SC">South Carolina</option>
+						<option value="SD">South Dakota</option>
+						<option value="TN">Tennessee</option>
+						<option value="TX">Texas</option>
+						<option value="UT">Utah</option>
+						<option value="VT">Vermont</option>
+						<option value="VA">Virginia</option>
+						<option value="WA">Washington</option>
+						<option value="WV">West Virginia</option>
+						<option value="WI">Wisconsin</option>
+						<option value="WY">Wyoming</option>
+					</select>				
+					<br>
+					<br>
+					Age: 
+					<input type="radio" name="age" value="under">Under 18
+					<input type="radio" name="age" value="over">18+
+					<br>
+				    <input type="submit" value="Go">
+					</form>
+                    
                 </div>
             </div>
             
