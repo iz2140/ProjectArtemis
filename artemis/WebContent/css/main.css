@@ -102,9 +102,10 @@ input#searchBtn:hover, input#searchBtn:focus {
 }
 
 .mainDiv {
+	
 	width:800px;
-	height:100%;
 	margin:0px auto;
+	margin-top: 84px;
 }
 
 /* RESULTS PAGE */

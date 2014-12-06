@@ -1,6 +1,6 @@
-<div style="width:800px; height:48px; padding-top: 2px; background-color:#aac3d0;">
-        <div style="float:left;">
-            
+<div style="position:fixed; top: 0; width:100%; height:84px; padding-top: 2px; background-color:#dadee8; z-index:999;">
+        <div style="width: 800px; margin: 0px auto;">
+            <a href="index.jsp"><img src="img/logo.png" style="margin-left:12px;" /></a>
         </div>
         <div style="float:right; margin-top:14px; padding-right:12px;">
         <%
