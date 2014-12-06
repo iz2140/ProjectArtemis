@@ -63,7 +63,7 @@ def make_provider(idNum, name, name_2, address_1, address_2, city, state, zipcod
 	return provider
 
 def print_provider(provider):
-	return provider.idNum + "," + provider.name + "," + provider.name_2 + "," + provider.address_1 + "," + provider.address_2 + "," + provider.city + "," + provider.state+ "," + provider.zipcode + "," + provider.phone_number + "," + provider.web_site+ "," + provider.latitude + "," +  provider.longitude
+	return provider.idNum + "," + provider.name + "," + provider.name_2 + "," + provider.address_1 + "," + provider.address_2 + "," + provider.city + "," + provider.state+ "," + provider.zipcode + "," + provider.phone_number + "," + provider.web_site+ "," + provider.latitude + "," +  provider.longitude + "\n"
 
 
 
@@ -92,7 +92,7 @@ geocoder = GoogleGeocoder()
 geospacial = ""
 for provider in allProviders:
 	address = provider.address_1 + " "+ provider.city + " " +  provider.state 
-	print address
+	#print address
 	time.sleep(2)
 	search = geocoder.get(address)
 	geospacial = (search[0].geometry.location.lat, search[0].geometry.location.lng)
@@ -121,7 +121,7 @@ for x in allProviders:
 #print takeIn
 
 
-saveFile = open('sinkfile.txt','w')
+saveFile = open('providers.csv','w')
 saveFile.write(takeIn)
 saveFile.close()
 fp.close()      
