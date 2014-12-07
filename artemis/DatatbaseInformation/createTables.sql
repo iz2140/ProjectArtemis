@@ -30,27 +30,6 @@ CREATE TABLE services (
     PRIMARY KEY (p_id),
     FOREIGN KEY (p_id) REFERENCES providers(p_id));
 
-CREATE TABLE users (
-    username VARCHAR(50),
-    password VARCHAR(50),
-    date_created DATE,
-    city VARCHAR(100),
-    state CHAR(2),
-    PRIMARY KEY (username));
-
-CREATE TABLE reviews (
-    id INT,
-    p_id INT,
-    username VARCHAR(50),
-    rating INT,
-    review_text TEXT,
-    timestamp TIMESTAMP,
-    verified INT,
-    serv_used CHAR(8),
-    PRIMARY KEY (id),
-    FOREIGN KEY (username) REFERENCES users(username),
-    FOREIGN KEY (p_id) REFERENCES providers(p_id),
-    CHECK(rating <=5 AND rating >=0));
 
 CREATE TABLE providerphotos (
     id INT,
@@ -58,10 +37,38 @@ CREATE TABLE providerphotos (
     photo_url VARCHAR(2083),
     PRIMARY KEY (id),
     FOREIGN KEY (p_id) REFERENCES providers(p_id));
-*/
 
 CREATE TABLE aliases (
     id INT,
     alias VARCHAR(50),
     PRIMARY KEY (id));
+
+CREATE TABLE users (
+    u_id INT,
+    username VARCHAR(50),
+    email VARCHAR(50),
+    password VARCHAR(50),
+    city VARCHAR(100),
+    state CHAR(2),
+    PRIMARY KEY (u_id));
+
+
+CREATE TABLE reviews (
+    id INT,
+    p_id INT,
+    u_id INT,
+    rating INT,
+    review_text TEXT,
+    timestamp TIMESTAMP,
+    verified INT,
+    serv_used CHAR(8),
+    PRIMARY KEY (id),
+    FOREIGN KEY (u_id) REFERENCES users(u_id),
+    FOREIGN KEY (p_id) REFERENCES providers(p_id),
+    CHECK(rating <=5 AND rating >=0));
+
+*/
+
+
+
 

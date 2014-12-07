@@ -84,7 +84,7 @@ def writeUsersInsert(tablename, infile, outfile):
             else:
                 datum[ind] = val.encode('utf-8')
 
-        commands.append('INSERT INTO {table} ({field0}, {field1}, {field2}, {field3}, {field4}) VALUES ("{val0}", "{val1}", {val2}, "{val3}", "{val4}");\n'.format(table=tablename,field0=fields[0],
+        commands.append('INSERT INTO {table} ({field0}, {field1}, {field2}, {field3}, {field4}) VALUES ("{val0}", "{val1}", "{val2}", "{val3}", "{val4}");\n'.format(table=tablename,field0=fields[0],
             field1=fields[1], 
             field2=fields[2], 
             field3=fields[3],
@@ -235,7 +235,7 @@ def writeProvidersInsert(tablename, infile, outfile):
 if __name__ == "__main__":
    #writeProvidersInsert("providers", "providers.csv", "providerInsert.sql")
    #writeServicesInsert("services", "services.csv", "serviceInsert.sql")
-   #writeReviewsInsert("reviews", "reviews.csv", "reviews.sql")
+   writeReviewsInsert("reviews", "reviews.csv", "reviews.sql")
    #writeUsersInsert("users", "users.csv", "users.sql")
    #writeProviderPicturesInsert("providerphotos", "providerphotos.csv", "providerphotos.sql")
    #writeAliasInsert("aliases", "aliases.csv", "aliases.sql")

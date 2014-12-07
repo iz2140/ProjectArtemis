@@ -1,5 +1,5 @@
-username,password,date_created,city,state
-Galine,hack,"""2009-05-05""",New York,NY
-Ophyroe,hack,"""2009-05-05""",New York,NY
-Kalliste,hack,"""2009-05-05""",New York,NY
-Samia,hack,"""2009-05-05""",New York,NY
+u_id,email,username,password,city,state
+1,fake@email.com,Galine,hack,New York,NY
+2,fake@email.com,Ophyroe,hack,New York,NY
+3,fake@email.com,Kalliste,hack,New York,NY
+4,fake@email.com,Samia,hack,New York,NY
