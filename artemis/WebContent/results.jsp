@@ -250,12 +250,9 @@
             out.print(rset.getString("name"));
             
             /* LINK */
-            String rpath = rset.getString("name");
-            rpath = rpath.replace(" ", "+");
-            rpath = rpath.replace("&", "%26");
-            rpath = rpath.replace("'", "%27%27");
-            rpath = "\"provider.jsp?name=" + rpath + "\"";
-            out.print("<a href=" + rpath + "></a>");
+            int pid = rset.getInt("p_id");
+            String rpath = "provider.jsp?p_id=" + pid;
+            out.print(rpath + "\n");
             out.print("</div>");
             
             /* SERVICES PROVIDED */
