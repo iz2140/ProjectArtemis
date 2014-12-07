@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+ <link rel="stylesheet" type="text/css" href="css/main.css">
+<title>Registration</title>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
@@ -34,15 +35,14 @@
              <input style="width: 150px;" type="password" name="password2" />
          </div>
          
-         Your identity will never be published to the site. Usernames are randomly generated and emails are collected for password recover.
+         <center>Your identity will never be shared or published. Usernames are randomly generated and emails are collected for password recovery purposes only.</center>
          
          <div style="width: 50px; margin-left:310px;">
          <input type="submit" value="register"/>
          </div>
      </div>
      <br>
-     <br>
-      <div class="g-recaptcha" data-sitekey="6LcT7v4SAAAAAO5WchV_q_WyrV-asheOD3aDhixx"></div>
+      <center><div class="g-recaptcha" data-sitekey="6LcT7v4SAAAAAO5WchV_q_WyrV-asheOD3aDhixx"></div></center>
      </form>
      </div>
   </div>

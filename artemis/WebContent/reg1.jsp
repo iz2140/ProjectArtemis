@@ -8,7 +8,7 @@
 </head>
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.sql.*" %>
-<%@ page import="java.util.Date" %>
+<%@ page import="javax.servlet.*,java.text.*" %>
 <%@include file="init.jsp" %>
 <body>
 
@@ -17,7 +17,7 @@
    String password1=request.getParameter("password1");
    String password2=request.getParameter("password2");
    
-  
+   getServletContext().getRequestDispatcher("/register.jsp").include(request, response);
    PreparedStatement ps = null;
    ResultSet rs = null;
    
@@ -41,15 +41,8 @@
 	   } else{
 		   
 		   %>
-		   <div class="mainDiv" style="background-color:#f0f0f0;">
-			    <%@include file="header.jsp" %>
-			    <div id="menuPage">
-			<div style="width:600px; margin:0px auto; padding-top:10px;">
-		   <%
-		   out.println("<div class=\"title\"><center>Sorry, your passwords don't match. Please try again. </center></div>");
-		   out.println("<br><center><a href=\"LoginHome.jsp\" class=\"button\">Back to Login Page</a></center>");	
-		    %>
-	        </div></div></div>
+ 		<center><p style="color:red">Your passwords don't match.</p></center>
+
 	    <%
 	   		
    }
@@ -58,15 +51,8 @@
    catch(SQLException sqe)
    {
 	   %>
-	   <div class="mainDiv" style="background-color:#f0f0f0;">
-		    <%@include file="header.jsp" %>
-		    <div id="menuPage">
-		<div style="width:600px; margin:0px auto; padding-top:10px;">
-	   <%
-	   out.println("<div class=\"title\"><center>Sorry, your account already exists!</center></div>");
-	   out.println("<br><center><a href=\"LoginHome.jsp\" class=\"button\">Back to Login Page</a></center>");
-	    %>
-        </div></div></div>
+ 	<center><p style="color:red">Your account is already registered. Please login.</p></center>
+
     <%
    }
    }

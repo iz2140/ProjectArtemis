@@ -9,9 +9,6 @@
 	<title>Search Results</title>
 	
 	<%@include file="init.jsp" %>
-	
-	
-	
 	<%
 		PreparedStatement pstmt = null;
 		StringBuilder sb;
@@ -191,8 +188,6 @@
         	
         	String reloadURL = "window.location.href=\'results.jsp?";
         	reloadURL += "search=" + request.getParameter("search");
-        	
-        	
         	
             if (request.getParameter("latSW") != null) {
             	reloadURL += "&latSW=" + request.getParameter("latSW");
