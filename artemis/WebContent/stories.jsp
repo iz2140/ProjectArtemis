@@ -40,6 +40,17 @@
 </head>
 <body>
     <%@include file="header.jsp" %>
+    
+    <div style="width:100%; height:300px; background-color:#f6f6f6; margin:0px 0px; margin-top: 86px; padding:10px 10px 0px 0px;">
+        
+            <div style="width: 800px; margin:0px auto; margin-top: 90px;">
+                <h1>Real Stories by Real Women.</h1>
+                
+                Violence against women is one of the most widespread of human rights abuses. One out of every three women worldwide will be physically, sexually or otherwise abused during her lifetime. During times of war and conflict, sexual violence is used to terrorize and humiliate women and girls. Survivors often suffer further victimization by family and society. The International Rescue Committee works to break this cycle of violence by helping survivors 
+            </div>
+        
+        </div>
+        
     <div class="mainDiv">
     
     <%
@@ -77,17 +88,6 @@
         	out.print("</div>");
         }
         
-        %>
-        <div style="width:800px; height:140px; background-color:#f6f6f6; margin:0px 0px; padding:10px 10px 0px 0px;">
-        
-            <div style="margin-left: 50px; margin-top: 90px;">
-                <h1>Real Stories by Real Women.</h1>
-            </div>
-        
-        </div>
-        
-        
-        <%
         /* ------------------ STORIES -------------------*/
         while (rset.next()) {
         	count++;
@@ -96,14 +96,64 @@
         		continue;
         	}
         	
+        	
         	out.print("<div class=\"storyRow\">");
         	
+        	out.print("<div class=\"storyLeft\">");
+        	
+        	out.print("asdfasdfasdf");
+        	
+        	out.print("</div>");
+        	
+        	
+        	out.print("<div class=\"storyRight\">");
         	
         	/* NAME OF RESTAURANT */
-        	
-            out.print("<div class=\"resultName\">" + count + ". ");
+            pset = null;
+            String cat;
+            try {
+                sql = "select * from providers where p_id='" + rset.getInt("p_id") + "'";
+                pstmt = conn.prepareStatement(sql);
+                pstmt.clearParameters();
+                pset = pstmt.executeQuery();
+                
+                if (pset.next()) {
+                	
+                	out.print("<h4>");
+                    out.print(pset.getString("name"));
+                    /*while (pset.next()) {
+                        out.print(", " + pset.getString("c_name"));
+                    }*/
+                    out.print("</h4>");
+                    
+                    
+                }
+                
+            } catch (SQLException e) {
+                error_msg = e.getMessage();
+                System.out.println(error_msg);
+            }
+            
+        	//STARS---------------------------------------------
+            out.print("<div class=\"stars\" style=\"margin-left: 18px; margin-top: 8px;\">");
+            double sd = rset.getDouble("rating");
+            int s = (int) Math.floor(sd);
+            String starsDiv = Integer.toString(s);
+            if (s < sd) {
+                starsDiv += "5";
+            }
+            starsDiv = "<div class=\"stars" + starsDiv + "\">";
+            out.print(starsDiv);
+            out.print("<div class=\"starsImg\"></div>");
+            out.print("</div></div>");
+            //--------------------------------------------------
+            
+            out.print("<div style=\"clear:both;\">");
             //out.print(rset.getString("name"));
             out.print("anonymous says...");
+            out.print("</div>");
+            
+            out.print("<div style=\"clear:both;\">");
             
             out.print(rset.getString("review_text"));
             out.print("</div>");
@@ -116,47 +166,13 @@
             out.print("<a href=" + rpath + "></a>");
             out.print("</div>");*/
             
-            /* CATEGORIES */
-            /*pset = null;
-            String cat;
-            try {
-                sql = "select c_name from Belongs_To where rid='" + rid + "'";
-                pstmt = conn.prepareStatement(sql);
-                pstmt.clearParameters();
-                pset = pstmt.executeQuery();
-                
-            } catch (SQLException e) {
-                error_msg = e.getMessage();
-                System.out.println(error_msg);
-            }
             
-            if (pset.next()) {
-	            out.print("<div style=\"width:658px; padding-left: 22px; float:left;\">" + pset.getString("c_name"));
-	            while (pset.next()) {
-	            	out.print(", " + pset.getString("c_name"));
-	            }
-	            out.print("</div>");
-            }*/
-            
-            //STARS---------------------------------------------
-            out.print("<div class=\"stars\" style=\"margin-left: 18px; margin-top: 8px;\">");
-            double sd = rset.getDouble("rating");
-            int s = (int) Math.floor(sd);
-            String starsDiv = Integer.toString(s);
-            if (s < sd) {
-            	starsDiv += "5";
-            }
-            starsDiv = "<div class=\"stars" + starsDiv + "\">";
-            out.print(starsDiv);
-            out.print("<div class=\"starsImg\"></div>");
-            out.print("</div></div>");
-            //--------------------------------------------------
             
             
             
             /* end results row */
-            out.print("</div>");
-
+            out.print("</div></div>");
+            
         }
     } else {
     	out.print("oh no! " + error_msg);
@@ -167,7 +183,8 @@
     if (pstmt != null)
         pstmt.close();
     %>
-    <%@include file="footer.jsp" %>
+    
     </div>
+    <%@include file="footer.jsp" %>
 </body>
 </html>
