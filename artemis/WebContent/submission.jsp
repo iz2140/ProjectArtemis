@@ -2,11 +2,9 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<%
-String p_id = request.getParameter("p_id"); //search provider from prev page
-%>
 
 <%@include file="header.jsp"%>
+<%@include file="init.jsp"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -22,11 +20,30 @@ String p_id = request.getParameter("p_id"); //search provider from prev page
 		%> --%>
 		
 		<%
-			
-			out.print("<input type=\"hidden\" name=\"rid\" value=\""
-						+ request.getParameter("rid") + "\"");
-		%>
-		    
+		//search provider from prev page
+		String p_id = request.getParameter("p_id"); 
+		PreparedStatement pstmt = null;
+		ResultSet pset = null;
+		try {
+			String sql = "Select name from providers where p_id=" + p_id;
+			pstmt = conn.prepareStatement(sql);
+			pset = pstmt.executeQuery();
+		
+			out.print("<div class=\"smallBold\">");
+			out.print("<ul style=\"padding-left:35px;\">");
+			while (pset.next()) {		
+				out.print("<li>");
+				out.print(pset.getString("name"));
+				out.print("</li>");	
+			}
+			out.print("</ul>");
+			out.print("</div>");
+		
+		} catch (SQLException e) {
+			error_msg = e.getMessage();
+			System.out.println(error_msg);
+		}
+%>   
 		<form name="story" method="post" action="submitdb.jsp">
 			<table cellpadding="10" cellspacing="10" align="center">
 				<col width="230">
@@ -64,7 +81,7 @@ String p_id = request.getParameter("p_id"); //search provider from prev page
 						java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat(
 								"yyyy-MM-dd");
 						String reviewDate = sdf.format(date);
-						out.print("TODAY'S DATE: " + reviewDate);
+						//out.print("TODAY'S DATE: " + reviewDate);
 				%>
 			</center>
 		</form>
