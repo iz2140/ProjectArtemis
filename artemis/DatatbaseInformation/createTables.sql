@@ -51,7 +51,6 @@ CREATE TABLE reviews (
     FOREIGN KEY (username) REFERENCES users(username),
     FOREIGN KEY (p_id) REFERENCES providers(p_id),
     CHECK(rating <=5 AND rating >=0));
-*/
 
 CREATE TABLE providerphotos (
     id INT,
@@ -59,5 +58,10 @@ CREATE TABLE providerphotos (
     photo_url VARCHAR(2083),
     PRIMARY KEY (id),
     FOREIGN KEY (p_id) REFERENCES providers(p_id));
+*/
 
-    
+CREATE TABLE aliases (
+    id INT,
+    alias VARCHAR(50),
+    PRIMARY KEY (id));
+
