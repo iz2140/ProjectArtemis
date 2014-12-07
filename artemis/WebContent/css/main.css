@@ -377,7 +377,7 @@ input#voteBtn {
 .pgN {
 	position:relative;
     float:left;
-    background-color: #74abc7;
+    background-color: #192f5f;
 	width: 40px;
 	padding-top: 5px;
 	height: 35px;
@@ -385,7 +385,7 @@ input#voteBtn {
 	color: #fff;
 }
 .pgN:hover {
-    background-color: #dae6ec;
+    background-color: #dadee8;
 }
 .pgN a {
     position: absolute;
