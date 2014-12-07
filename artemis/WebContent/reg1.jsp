@@ -30,11 +30,41 @@
 			//get random username --TO DO: RANDOMLY GENERATE USERNAMES
 			String username = "Calliope";
 			
-			String sql = "insert into Users (email, username, password)";
+			String sql = "insert into users (email, username, password)";
 			sql += "values ('"+email+"','"+username+"','"+password1+"')";
 		   ps = conn.prepareStatement(sql);
 		   int rows= ps.executeUpdate(); 
-		   session.setAttribute("email", email);
+		   
+		  
+		   
+		   //set the u_id in the setAttributes space
+		   int u_id = 0;
+		   
+		try {
+			 //select the u_id that was just inserted into the users table
+			   String sql2 = "SELECT u_id from users where email='" + email +"'";
+			   ps = null;
+			   ps = conn.prepareStatement(sql2);
+	
+				ResultSet set = ps.executeQuery();
+			
+				while (set.next()) {		
+					u_id = set.getInt("u_id");
+				}
+				
+				if (u_id != 0) {
+					session.setAttribute("u_id", u_id);
+				} else {
+					System.out.println("u_id of 0... error");
+				}
+	
+			
+			} catch (SQLException e) {
+				error_msg = e.getMessage();
+				System.out.println(error_msg);
+			}
+		   
+		   
 		   //upon successful registration redirects to index/home page
 	       response.sendRedirect("index.jsp");
 	   } else{
