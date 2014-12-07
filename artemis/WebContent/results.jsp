@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import= "java.util.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -33,10 +34,10 @@
 	    
 	    int numResults = 0;
 	    try {
-	        if (request.getParameterValues("service") != null) {
+	        if (request.getParameterValues("service") != null && (city != null) && (state !=null)) {
 	        	
-	            /*------------ SEARCH FROM MAPS ------------*/        
-	        	sql = "SELECT *,X(latlong),Y(latlong) FROM Restaurants R LEFT JOIN Neighborhoods N on R.neighborhood=N.nid ";
+	            /*------------ SEARCH BY GEOCODING ------------*/        
+/* 	        	sql = "SELECT *,X(latlong),Y(latlong) FROM providers ";
 	           
 	            sql += "WHERE X(latlong) BETWEEN " + request.getParameter("latSW");
 	            sql += " AND " + request.getParameter("latNE") + " AND ";
@@ -44,7 +45,14 @@
 	            sql += " AND " + request.getParameter("lonNE");
 	        	
 	        	sql += " ORDER BY n_Stars DESC";
+	        	 */
 	        	
+	        	/*------------ SEARCH BY CITY, ST ------------*/
+	        	//list of providers ordered by rating, where city and state matched user specified params
+	        	sql = "SELECT * FROM providers ";
+	        	sql += String.format("WHERE city='%s'", city);
+	        	sql += String.format(" AND state='%s'", state);
+	        	sql += " ORDER BY avg_rating DESC";
 	        	pstmt = conn.prepareStatement(sql);
 	            pstmt.clearParameters();
 	            rset = pstmt.executeQuery();
@@ -163,7 +171,7 @@
     	rset.beforeFirst();
     	int count = 0;
         ResultSet pset = null;
-        String rid = "0";
+        String p_id = "0"; //unique key id of the provider
         
         int resultsPP = 20;
         int pageNum = 0;
@@ -214,12 +222,12 @@
         	
         	out.print("<div class=\"resultRow\">");
         	
-        	rid = rset.getString("rid");
+        	p_id = rset.getString("p_id");
         	pset = null;
         	String photo = "http://s3-media1.ak.yelpcdn.com/assets/2/www/img/924a6444ca6c/gfx/blank_biz_medium.gif";
         	
         	try {
-                sql = "select url from Photos where rid='" + rid + "'";
+                sql = "select url from providerphotos where p_id=" + p_id + "";
                 pstmt = conn.prepareStatement(sql);
                 pstmt.clearParameters();
                 pset = pstmt.executeQuery();
@@ -236,25 +244,22 @@
         	out.print("<img style=\"vertical-align:middle; max-height:100px; max-width:100px;\" src=\"" + photo + "\">");
         	out.print("</div>");
         	
-        	/* NAME OF RESTAURANT */
+        	/* NAME OF PROVIDER */
         	
             out.print("<div class=\"resultName\">" + count + ". ");
             out.print(rset.getString("name"));
             
             /* LINK */
-            String rpath = rset.getString("name");
-            rpath = rpath.replace(" ", "+");
-            rpath = rpath.replace("&", "%26");
-            rpath = rpath.replace("'", "%27%27");
-            rpath = "\"restaurant.jsp?name=" + rpath + "\"";
-            out.print("<a href=" + rpath + "></a>");
+            int pid = rset.getInt("p_id");
+            String rpath = "provider.jsp?p_id=" + pid;
+            out.print(rpath + "\n");
             out.print("</div>");
             
-            /* CATEGORIES */
+            /* SERVICES PROVIDED */
             pset = null;
-            String cat;
             try {
-                sql = "select c_name from Belongs_To where rid='" + rid + "'";
+            	//select from the table services all the services provided for that provider
+                sql = "select * from services where p_id='" + p_id + "'";
                 pstmt = conn.prepareStatement(sql);
                 pstmt.clearParameters();
                 pset = pstmt.executeQuery();
@@ -264,17 +269,25 @@
                 System.out.println(error_msg);
             }
             
+            Map service_dict = new HashMap();
+    		String[] service_array = {"std","sexual_assault","domestic_violence", "pregnancy_testing",
+    				"abortion", "low_cost", "contraception", "counseling"};
             if (pset.next()) {
-	            out.print("<div style=\"width:658px; padding-left: 22px; float:left;\">" + pset.getString("c_name"));
-	            while (pset.next()) {
+            	for (int i = 0; i < service_array.length; i++) {
+            		service_dict.put(service_array[i],pset.getInt(service_array[i]));
+            		out.print(service_array[i] + " T/F:" + pset.getInt(service_array[i]));
+            	}
+            	
+	           // out.print("<div style=\"width:658px; padding-left: 22px; float:left;\">" + pset.getString("c_name"));
+/* 	            while (pset.next()) {
 	            	out.print(", " + pset.getString("c_name"));
-	            }
-	            out.print("</div>");
+	            } */
+	            //out.print("</div>");
             }
             
             //STARS---------------------------------------------
             out.print("<div class=\"stars\" style=\"margin-left: 18px; margin-top: 8px;\">");
-            double sd = rset.getDouble("n_Stars");
+            double sd = rset.getDouble("avg_rating");
             int s = (int) Math.floor(sd);
             String starsDiv = Integer.toString(s);
             if (s < sd) {
@@ -288,7 +301,7 @@
             
             
             out.print("<div style=\"width: 140px; height: 24px; margin-top: 14px; margin-left: 10px; float:left;\">");
-            out.print(rset.getInt("n_Reviews") + " reviews");
+            out.print(rset.getInt("num_reviews") + " reviews");
             out.print("</div>");
             
             
@@ -296,20 +309,20 @@
             
             /* NEIGHBORHOOD / ADDRESS */
             out.print("<div style=\"margin-top: 14px; width: 358px; float:left;\">");
-            out.print(rset.getString("n_name") + "<br>");
-            out.print(rset.getString("address"));
+            out.print(rset.getString("address_1") + "<br>");
+            out.print(rset.getString("address_2"));
             out.print("</div><div style=\"clear:both;\"></div>");
             
             /* end results row */
             out.print("</div>");
             
             /* add marker to map */
-            out.print("<script type=\"text/javascript\">");
+/*             out.print("<script type=\"text/javascript\">");
             out.print("addMarker(\"" + rset.getString("name") + "\",");
             out.print(rset.getFloat("X(latlong)") + ",");
             out.print(rset.getFloat("Y(latlong)") + ",");
             out.print(rpath + ");");
-            out.print("</script>");
+            out.print("</script>"); */
             
         }
     } else {
