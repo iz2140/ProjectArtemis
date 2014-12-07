@@ -76,14 +76,12 @@
 				</tr>
 			</table>
 			<center>
+			    <%
+			    out.print("<input type=\"hidden\" name=\"p_id\" value=\"" + p_id + "\">");
+			    
+			    %>
 				<input type="submit" value="submit" />
-				<%
-					java.util.Date date = new java.util.Date();
-						java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat(
-								"yyyy-MM-dd");
-						String reviewDate = sdf.format(date);
-						//out.print("TODAY'S DATE: " + reviewDate);
-				%>
+				
 			</center>
 		</form>
 		<%-- <% 

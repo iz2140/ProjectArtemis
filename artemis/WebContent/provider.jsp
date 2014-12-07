@@ -55,11 +55,11 @@ function gotoreview ()
     <%
     //if (uid != null) {
     %>
-    //document.reviewForm.submit();
+    document.reviewForm.submit();
     <%
     //} else {
     %>
-    alertBox("Please login first!!");
+    //alertBox("Please login first!!");
     <%
     //}
     %>
@@ -204,8 +204,8 @@ rset.next();
     
     out.print("<div style=\"margin-top: 10px; float:right;\">");
     
-    out.print("<form name=\"reviewForm\" action=\"ReviewUI.jsp\" method=\"GET\">");
-    out.print("<input type=\"hidden\" name=\"rid\" value=\"" + p_id + "\">");
+    out.print("<form name=\"reviewForm\" action=\"submission.jsp\" method=\"GET\">");
+    out.print("<input type=\"hidden\" name=\"p_id\" value=\"" + p_id + "\">");
     out.print("<a href=\"javascript:gotoreview()\" class=\"button\"\">Write a Review</a>");
     out.print("</form>");
     

@@ -19,7 +19,7 @@
                     out.print("Hi artemis. ");
                     out.print("<a href=\"index.jsp\">Logout</a>");
                 } else {
-                    out.print("<a href=\"LoginHome.jsp\">Log In/Sign Up!</a>");
+                    out.print("<a href=\"register.jsp\">Log In/Sign Up!</a>");
                 }  
                 %>
             </div>

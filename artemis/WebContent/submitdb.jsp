@@ -4,12 +4,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+
 <title>Insert title here</title>
+<%@include file="init.jsp" %>
+
 </head>
 <body>
+<%@include file="header.jsp" %>
 <div class="mainDiv" style="background-color:#f0f0f0;">
-    <%@include file="header.jsp" %>
-     <%@include file="init.jsp" %>
+    
+     
 
 <div id="menuPage">
 <div style="width:600px; margin:0px auto; padding-top:10px;">
@@ -17,7 +22,7 @@
 <%
    String usid=(String)session.getAttribute("email");
    String stars=request.getParameter("moons");
-   String comments=request.getParameter("comments");
+   String comments=request.getParameter("comments").replace("'", "''");
    String p_id = request.getParameter("p_id");
    String[] qualities=request.getParameterValues("quality");
    
@@ -30,8 +35,10 @@
   
    try {
    
-   ps = conn.prepareStatement("insert into reviews (p_id, u_id, rating, review_text, timestamp) values ('"+p_id+"','"+usid+"','"+stars+"','"+comments+"','"+reviewDate+"')");
-   int rows= ps.executeUpdate();
+	   //ps = conn.prepareStatement("insert into reviews (p_id, u_id, rating, review_text, timestamp) values ('"+p_id+"','"+usid+"','"+stars+"','"+comments+"','"+reviewDate+"')");
+	   ps = conn.prepareStatement("insert into reviews (p_id, u_id, rating, review_text) values ('"+p_id+"','"+usid+"','"+stars+"','"+comments+"')");
+
+	   int rows= ps.executeUpdate();
    
 	   if (rows > 0) {
 		    out.print("Thank you for your feedback!");
@@ -52,12 +59,12 @@
 	   }
    
    } catch(SQLException sqe) {
-	   out.print("Oops, you already reviewed this service provider!<br><br>");
+	   out.print(sqe);
 	   //out.println("error: " + sqe);
    }
 %>
 <br><a href="index.jsp" class="button">Go Back?</a>
 </div></div></div>
-
+<%@include file="footer.jsp"%>
 </body>
 </html>
