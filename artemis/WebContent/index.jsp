@@ -120,7 +120,7 @@ ResultSet stateInfo = null;
 	    	  
 	    	  
 	    	  $(document.body).animate({
-	    		  'scrollTop': $('#input_form').offset().top
+	    		  'scrollTop': $('#stateInfoDiv').offset().top
 	    	  }, 300);
 	    	  
 	        //alert(data.name);
@@ -143,12 +143,12 @@ ResultSet stateInfo = null;
         <div style="float:right;">*darker colors represent more service providers</div>
         
         
-        <div id="stateInfoDiv" style="clear:both; float:left; padding-top:50px; width: 400px; height: 400px;">
+        <div id="stateInfoDiv" style="clear:both; float:left; padding-top:150px; width: 400px; height: 400px;">
         
         
 
         </div>
-        <div id="input_form" style="float:left; width: 400px; height: 400px; padding-top:50px;">
+        <div id="input_form" style="float:left; width: 400px; height: 400px; padding-top:150px;">
             <div style="margin:0px auto;">
                 <div>
                     <div class="title" style="height:32px;">I am looking for help with:</div>
