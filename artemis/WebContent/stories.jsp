@@ -69,7 +69,7 @@
         	int j = 0;
         	double numP = java.lang.Math.ceil(numResults / 20.0); //hard coded...
         	
-        	String reloadURL = "window.location.href=\'results.jsp?";
+        	String reloadURL = "window.location.href=\'stories.jsp?";
         	reloadURL += "search=" + request.getParameter("search");
             
             reloadURL += "&page=";
@@ -203,15 +203,6 @@
             
             
             /* LINK */
-            /*String rpath = rset.getString("name");
-            rpath = rpath.replace(" ", "+");
-            rpath = rpath.replace("&", "%26");
-            rpath = rpath.replace("'", "%27%27");
-            rpath = "\"restaurant.jsp?name=" + rpath + "\"";
-            out.print("<a href=" + rpath + "></a>");
-            out.print("</div>");*/
-            
-            
             
             
             

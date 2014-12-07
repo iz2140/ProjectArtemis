@@ -14,6 +14,7 @@
 	
 	<%
 		PreparedStatement pstmt = null;
+		StringBuilder sb;
 	    String sql;
 	    ResultSet rset = null;
 	    ResultSet nset = null;
@@ -24,13 +25,13 @@
 	    } 
 	    
 	    String city = request.getParameter("city");
-	    System.out.print(city + "\n");
+	    //System.out.print(city + "\n");
 	    String state = request.getParameter("st");
-	    System.out.print(state + "\n");
+	    //System.out.print(state + "\n");
 	    String zipcode = request.getParameter("zipcode");
-	    System.out.print(zipcode + "\n");
+	    //System.out.print(zipcode + "\n");
 	    String age_to_18 = request.getParameter("age");
-	    System.out.print(age_to_18 + "\n");
+	    //System.out.print(age_to_18 + "\n");
 	    
 	    int numResults = 0;
 	    try {
@@ -244,6 +245,7 @@
         	out.print("<img style=\"vertical-align:middle; max-height:100px; max-width:100px;\" src=\"" + photo + "\">");
         	out.print("</div>");
         	
+        	
         	/* NAME OF PROVIDER */
         	
             out.print("<div class=\"resultName\">" + count + ". ");
@@ -251,9 +253,17 @@
             
             /* LINK */
             int pid = rset.getInt("p_id");
-            String rpath = "provider.jsp?p_id=" + pid;
-            out.print(rpath + "\n");
+            String rpath = "\"provider.jsp?p_id=";
+            sb = new StringBuilder(rpath);
+            rpath = sb.append(pid).append("\"").toString();
+            StringBuilder anchor = new StringBuilder("<a href=");
+            String anchorStr = anchor.append(rpath).append(">").append(rset.getString("name")).append("</a>").toString();
+            //out.print("<a href=" + rpath + "></a>");
+            out.print(anchorStr);
             out.print("</div>");
+            
+            
+            
             
             /* SERVICES PROVIDED */
             pset = null;

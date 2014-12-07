@@ -37,7 +37,7 @@ CREATE TABLE users (
     city VARCHAR(100),
     state CHAR(2),
     PRIMARY KEY (username));
-*/
+
 CREATE TABLE reviews (
     id INT,
     p_id INT,
@@ -51,3 +51,17 @@ CREATE TABLE reviews (
     FOREIGN KEY (username) REFERENCES users(username),
     FOREIGN KEY (p_id) REFERENCES providers(p_id),
     CHECK(rating <=5 AND rating >=0));
+
+CREATE TABLE providerphotos (
+    id INT,
+    p_id INT,
+    photo_url VARCHAR(2083),
+    PRIMARY KEY (id),
+    FOREIGN KEY (p_id) REFERENCES providers(p_id));
+*/
+
+CREATE TABLE aliases (
+    id INT,
+    alias VARCHAR(50),
+    PRIMARY KEY (id));
+
