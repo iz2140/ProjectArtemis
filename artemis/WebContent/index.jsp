@@ -32,7 +32,7 @@
     	//list of states, ordered by number of reviews
     	//table name: visual
     	//table values: state (string), n_reviews (int)
-    	sql = "SELECT * FROM visual";
+    	sql = "SELECT * FROM reviews_per_state";
     	PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.clearParameters();
         mset = pstmt.executeQuery();
