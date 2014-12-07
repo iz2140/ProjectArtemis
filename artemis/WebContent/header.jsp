@@ -4,16 +4,17 @@
         </div>
         <div style="float:right; margin-top:14px; padding-right:12px;">
         <%
-        /*String uname = (String)session.getAttribute("name");
+        String uname = (String)session.getAttribute("email");
         if (uname != null) {
             out.print("Hi " + uname + "! | ");
-            out.print("<a href=\"welcome.jsp\" class=\"dblogin\">Profile</a>");
-            out.print(" | ");
-            out.print("<a href=\"logout.jsp\" class=\"dblogin\">Logout</a>");
+/*             out.print("<a href=\"welcome.jsp\" class=\"dblogin\">Profile</a>");
+            out.print(" | "); */
+            //can you edit this to re-route to index.jsp and just set uname to null?
+            out.print("<a href=\"index.jsp\" class=\"dblogin\">Logout</a>");
 
         } else {
             out.print("<a href=\"LoginHome.jsp\" class=\"dblogin\">Log In/Sign Up!</a>");
-        }*/   
+        }  
         %>
         </div>
         <div style="clear:both;"></div>

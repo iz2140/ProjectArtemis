@@ -13,22 +13,34 @@
 		PreparedStatement pstmt = null;
 	    String sql;
 	    ResultSet rset = null;
+	    ResultSet aliasSet = null;
+	    int numAlias = 0;
 	    
 	    int numResults = 0;
 	    try {
 
-	            /*------------ STORIES ------------*/
-	            
- 	            sql = "SELECT * FROM reviews R ORDER BY timestamp DESC";
-	            
-	            pstmt = conn.prepareStatement(sql);
-	            rset = pstmt.executeQuery(); //SQL Query
+			/*------------ STORIES ------------*/
+			
+			 sql = "SELECT * FROM reviews R ORDER BY timestamp DESC";
+			
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery(); //SQL Query
 	            
 	        if (rset != null) {
 	        	rset.last();
 	        	numResults = rset.getRow();
 	        	rset.beforeFirst();
 	        }
+	            
+	        aliasSet = null;
+            sql = "SELECT alias FROM aliases";
+            pstmt = conn.prepareStatement(sql);
+            aliasSet = pstmt.executeQuery();
+            if (aliasSet != null) {
+            	aliasSet.last();
+            	numAlias = aliasSet.getRow();
+            }
+
 	        
 	    } catch (SQLException e) {
 	        error_msg = e.getMessage();
@@ -189,7 +201,13 @@
             
             out.print("<div style=\"float:left; margin-top: 20px;\"><h3>");
             //out.print(rset.getString("name"));
-            out.print("anonymous' story:");
+            if (numAlias != 0) {
+            	aliasSet.absolute((int)Math.floor(Math.random() * numAlias));
+            	out.print(aliasSet.getString("alias") + "'s");
+            } else {
+            	out.print("anonymous'");
+            }
+            out.print(" story:");
             out.print("</h3></div>");
             
             out.print("<div style=\"float:right; margin-top: 20px;\"><h3>");
