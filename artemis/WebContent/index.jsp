@@ -116,8 +116,14 @@
     <div class="mainDiv">
         <div id="map" style="padding-top: 50px; width: 800px; height: 550px;"></div>
         <div style="float:right;">*darker colors represent more service providers</div>
+        
+        
+        <div style="float:left; padding-top:50px; width: 400px; height: 400px;">
+        
+        state info here;
 
-        <div id="input_form" style="width: 800px; height: 400px; padding-top:50px; background-color:#ffffff;">
+        </div>
+        <div id="input_form" style="float:left; width: 400px; height: 400px; padding-top:50px;">
             <div style="margin:0px auto;">
                 <div>
                     <div class="title" style="height:32px;">I am looking for help with:</div>
@@ -194,14 +200,16 @@
 					<input type="radio" name="age" value="over">18+
 					<br>
 					<br>
+					<div style="float:right;">
 				    <input type="submit" value="Go">
+				    </div>
 					</form>
                     
                 </div>
             </div>
             
         </div>
-        
+        <div style="clear:both;"></div>
     </div>
         
    
