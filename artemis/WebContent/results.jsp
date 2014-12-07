@@ -299,7 +299,7 @@
         	
             out.print("<div class=\"resultName\">" + count + ". ");
             out.print(rset.getString("name"));
-            
+            out.print("</div>");	// end result name
             /* LINK */
             int pid = rset.getInt("p_id");
             String rpath = "\"provider.jsp?p_id=";
@@ -325,7 +325,7 @@
             	
             }
             out.print("</div><div style=\"clear:both;\"></div>");
-            out.print("</div>");	// end result name
+            //out.print("</div>");	// end result name
             /* end results row */
             out.print("</div>");
             out.print("</div>");
