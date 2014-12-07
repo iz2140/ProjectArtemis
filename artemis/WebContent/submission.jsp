@@ -28,7 +28,8 @@
 			String sql = "Select name from providers where p_id=" + p_id;
 			pstmt = conn.prepareStatement(sql);
 			pset = pstmt.executeQuery();
-		
+			
+			//print name of the provider 
 			out.print("<div class=\"smallBold\">");
 			out.print("<ul style=\"padding-left:35px;\">");
 			while (pset.next()) {		
