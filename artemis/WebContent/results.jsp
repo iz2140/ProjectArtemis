@@ -247,6 +247,8 @@
             if (s < sd) {
             	starsDiv += "5";
             }
+			System.out.println(starsDiv);
+            
             starsDiv = "<div class=\"stars" + starsDiv + "\">";
             out.print(starsDiv);
             out.print("<div class=\"starsImg\"></div>");
