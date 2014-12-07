@@ -1,4 +1,4 @@
-INSERT INTO users (username, password, date_created, city, state) VALUES ("Galine", "hack", "2009-05-05", "New York", "NY");
-INSERT INTO users (username, password, date_created, city, state) VALUES ("Ophyroe", "hack", "2009-05-05", "New York", "NY");
-INSERT INTO users (username, password, date_created, city, state) VALUES ("Kalliste", "hack", "2009-05-05", "New York", "NY");
-INSERT INTO users (username, password, date_created, city, state) VALUES ("Samia", "hack", "2009-05-05", "New York", "NY");
+INSERT INTO users (u_id, email, username, password, city) VALUES ("1", "fake@email.com", "Galine", "hack", "New York");
+INSERT INTO users (u_id, email, username, password, city) VALUES ("2", "fake@email.com", "Ophyroe", "hack", "New York");
+INSERT INTO users (u_id, email, username, password, city) VALUES ("3", "fake@email.com", "Kalliste", "hack", "New York");
+INSERT INTO users (u_id, email, username, password, city) VALUES ("4", "fake@email.com", "Samia", "hack", "New York");
