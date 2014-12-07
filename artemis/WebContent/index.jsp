@@ -6,6 +6,7 @@
 
 <%
 	ResultSet mset = null;
+ResultSet stateInfo = null;
     try {
         /*------------ QUERY FOR STATE/N_REVIEWS------------*/
         //list of states, ordered by number of reviews
@@ -14,6 +15,11 @@
         String sql = "SELECT * FROM reviews_per_state";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         mset = pstmt.executeQuery();
+        
+        sql = "select * from stateservices;";
+        pstmt = conn.prepareStatement(sql);
+        stateInfo = pstmt.executeQuery();
+        
 
     }catch (SQLException e) {
         error_msg = e.getMessage(); 
@@ -42,7 +48,15 @@
     		   mapObj[_state] = {fill: '#aaa'};
     	}
     }
+    var stateData = {};
+    function addStateInfo(_state, _data) {
+    	stateData[_state] = _data;
+    }
     
+    function setStateData(_state) {
+    	
+    	$('#stateInfoDiv').html("<h2>" + _state + "</h2>" + stateData[_state]);
+    }
     <%
     if(mset != null) {
         while(mset.next()) {
@@ -54,6 +68,14 @@
         }
     } else {
         out.print(error_msg);
+    }
+    if (stateInfo != null) {
+        while (stateInfo.next()) {
+        	out.print("addStateInfo(\"" + stateInfo.getString("state") + "\",");
+            out.print("\"" + stateInfo.getString("abort_minor") + "\");");
+        	
+        	
+        }
     }
     %>
     
@@ -93,6 +115,9 @@
     	            break;
     	        }
 	    	   }
+	    	  setStateData(objSel.options[i].text);
+	    	  
+	    	  
 	    	  
 	    	  $(document.body).animate({
 	    		  'scrollTop': $('#input_form').offset().top
@@ -118,9 +143,9 @@
         <div style="float:right;">*darker colors represent more service providers</div>
         
         
-        <div style="float:left; padding-top:50px; width: 400px; height: 400px;">
+        <div id="stateInfoDiv" style="clear:both; float:left; padding-top:50px; width: 400px; height: 400px;">
         
-        state info here;
+        
 
         </div>
         <div id="input_form" style="float:left; width: 400px; height: 400px; padding-top:50px;">
