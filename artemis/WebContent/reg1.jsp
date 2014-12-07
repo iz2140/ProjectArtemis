@@ -25,21 +25,34 @@
    if(!(email.equals(null) || email.equals("")) && !(password1.equals(null) || password1.equals(""))) {
    try {
 
-   //passwords match
-	if(password1.equals(password2)){
-		//get random username --TO DO: RANDOMLY GENERATE USERNAMES
-		String username = "Calliope";
-		
-		String sql = "insert into Users (u_id, email, username, password)";
-		sql += "values ('"+email+"','"+username+"','"+password1+"')";
-	   ps = conn.prepareStatement(sql);
-	   int rows= ps.executeUpdate(); 
-	   session.setAttribute("uid", email);
-	   session.setAttribute("username", username);
-       response.sendRedirect("RegComplete.jsp");
+	   //passwords match
+		if(password1.equals(password2)){
+			//get random username --TO DO: RANDOMLY GENERATE USERNAMES
+			String username = "Calliope";
+			
+			String sql = "insert into Users (u_id, email, username, password)";
+			sql += "values ('"+email+"','"+username+"','"+password1+"')";
+		   ps = conn.prepareStatement(sql);
+		   int rows= ps.executeUpdate(); 
+		   session.setAttribute("uid", email);
+		   session.setAttribute("username", username);
+		   //upon successful registration redirects to index/home page
+	       response.sendRedirect("index.jsp");
+	   } else{
+		   
+		   %>
+		   <div class="mainDiv" style="background-color:#f0f0f0;">
+			    <%@include file="header.jsp" %>
+			    <div id="menuPage">
+			<div style="width:600px; margin:0px auto; padding-top:10px;">
+		   <%
+		   out.println("<div class=\"title\"><center>Sorry, your passwords don't match. Please try again. </center></div>");
+		   out.println("<br><center><a href=\"LoginHome.jsp\" class=\"button\">Back to Login Page</a></center>");	
+		    %>
+	        </div></div></div>
+	    <%
+	   		
    }
-   else
-	   response.sendRedirect("RegistrationError.jsp");
       
    }
    catch(SQLException sqe)
@@ -51,7 +64,6 @@
 		<div style="width:600px; margin:0px auto; padding-top:10px;">
 	   <%
 	   out.println("<div class=\"title\"><center>Sorry, your account already exists!</center></div>");
-	   out.println("<center><img src=\"registered.png\"></center>");
 	   out.println("<br><center><a href=\"LoginHome.jsp\" class=\"button\">Back to Login Page</a></center>");
 	    %>
         </div></div></div>
@@ -60,8 +72,6 @@
    }
    else
    {
-	   //?? Please halp!1
-	   getServletContext().getRequestDispatcher("/RegistrationUI.jsp").include(request, response);
    %>
    <center><p style="color:red">Sorry, your registration is not complete!</p></center>
    <% 
