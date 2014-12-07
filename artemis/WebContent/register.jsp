@@ -40,8 +40,9 @@
          <input type="submit" value="register"/>
          </div>
      </div>
+     <br>
+     <br>
       <div class="g-recaptcha" data-sitekey="6LcT7v4SAAAAAO5WchV_q_WyrV-asheOD3aDhixx"></div>
-     
      </form>
      </div>
   </div>

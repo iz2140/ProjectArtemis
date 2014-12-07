@@ -5,12 +5,10 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<link rel="stylesheet" type="text/css" href="css/dbstyle.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<title>Search Results</title>
 	
 	<%@include file="init.jsp" %>
-	
-	
 	
 	<%
 		PreparedStatement pstmt = null;
@@ -97,8 +95,6 @@
 	
 	<!---------------------- MAPS ---------------------->
     <style type="text/css">
-        html { height: 100% }
-        body { height: 100%; margin: 0; padding: 0 }
         #map-canvas { height: 100% }
     </style>
     <script type="text/javascript"
@@ -160,10 +156,11 @@
     </script>
 </head>
 <body>
-    <div class="mainDiv">
     <%@include file="header.jsp" %>
+    <div class="mainDiv">
+    
 
-    <H2>Search results for <%= request.getParameter("search") %>: <%= numResults %></H2>
+    
     <!-- MAPS -->
     <div id="map-canvas" style="width: 800px; height: 300px;"></div>
   
@@ -327,12 +324,12 @@
             out.print("</div>");
             
             /* add marker to map */
-/*             out.print("<script type=\"text/javascript\">");
+            out.print("<script type=\"text/javascript\">");
             out.print("addMarker(\"" + rset.getString("name") + "\",");
-            out.print(rset.getFloat("X(latlong)") + ",");
-            out.print(rset.getFloat("Y(latlong)") + ",");
+            out.print(rset.getFloat("latitude") + ",");
+            out.print(rset.getFloat("longitude") + ",");
             out.print(rpath + ");");
-            out.print("</script>"); */
+            out.print("</script>");
             
         }
     } else {
@@ -344,7 +341,8 @@
     if (pstmt != null)
         pstmt.close();
     %>
-    <%@include file="footer.jsp" %>
+    
     </div>
+<%@include file="footer.jsp" %>
 </body>
 </html>

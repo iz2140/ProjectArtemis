@@ -86,6 +86,18 @@
 	        }
 	      },      
 	      'click' : function(event, data) {
+	    	  var objSel = document.getElementById("stst");
+	    	  for (var i = 0; i < objSel.options.length; i++) {
+    	        if (objSel.options[i].value == data.name) {
+    	        	objSel.options[i].selected = true;
+    	            break;
+    	        }
+	    	   }
+	    	  
+	    	  $(document.body).animate({
+	    		  'scrollTop': $('#input_form').offset().top
+	    	  }, 300);
+	    	  
 	        //alert(data.name);
 	    	  /*$('#alert')
 	          .text('Click '+data.name+' on map 1')
@@ -103,12 +115,12 @@
     <%@include file="header.jsp" %>
     <div class="mainDiv">
         <div id="map" style="padding-top: 50px; width: 800px; height: 550px;"></div>
-    
+        <div style="float:right;">*darker colors represent more service providers</div>
 
-        <div style="width: 800px; height: 400px; padding-top:50px; background-color:#ffffff;">
-            <div style="width:540px; margin:0px auto;">
+        <div id="input_form" style="width: 800px; height: 400px; padding-top:50px; background-color:#ffffff;">
+            <div style="margin:0px auto;">
                 <div>
-                    <div class="title" style="height:32px;">I am looking for:</div>
+                    <div class="title" style="height:32px;">I am looking for help with:</div>
 
                     <form name = "advanced_search" action="results.jsp" method="get">
 				    <input type="checkbox" name="service" value="abortion"> Abortion Services<br>
@@ -119,10 +131,9 @@
 				 	<input type="checkbox" name="service" value="pregnancy"> Pregnancy Testing<br>
 				 	<input type="checkbox" name="service" value="sexual_assault"> Sexual Assault<br>
 				 	<input type="checkbox" name="service" value="std"> STD and Sexual Health Services<br>
-				    <br>
 					<br>
-					in: <input type = "text" placeholder = "City" name = "city" style="width:200px;">, 
-					<select name = "st">
+					in: <input type = "text" placeholder = "City" name = "city" style="width:200px;"> &nbsp;
+					<select id="stst" name="st">
 						<option value="AL">Alabama</option>
 						<option value="AK">Alaska</option>
 						<option value="AZ">Arizona</option>

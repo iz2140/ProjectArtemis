@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="css/main.css">
-<title>Search Results</title>
+<title>Stories</title>
 
 <%@include file="init.jsp"%>
 
@@ -13,6 +13,8 @@
 	PreparedStatement pstmt = null;
 	String sql;
 	ResultSet rset = null;
+	ResultSet aliasSet = null;
+	int numAlias = 0;
 
 	int numResults = 0;
 	try {
@@ -30,6 +32,15 @@
 			rset.beforeFirst();
 		}
 
+		aliasSet = null;
+		sql = "SELECT alias FROM aliases";
+		pstmt = conn.prepareStatement(sql);
+		aliasSet = pstmt.executeQuery();
+		if (aliasSet != null) {
+			aliasSet.last();
+			numAlias = aliasSet.getRow();
+		}
+
 	} catch (SQLException e) {
 		error_msg = e.getMessage();
 		System.out.println(error_msg);
@@ -41,8 +52,8 @@
 <body>
 	<%@include file="header.jsp"%>
 
-	<div
-		style="width: 100%; height: 300px; background-color: #f6f6f6; margin: 0px 0px; margin-top: 86px; padding: 10px 10px 0px 0px;">
+	<div style="width: 100%; height: 300px; background-color: #f6f6f6; margin: 0px 0px; margin-top: 86px; padding: 10px 10px 0px 0px;">
+		
 		<div style="width: 800px; margin: 0px auto; margin-top: 90px;">
 			<h1>Real Stories by Real Women.</h1>
 			Silence is the most crippling inhibitor to free thought. In order for
@@ -55,6 +66,7 @@
 			<p>Remove the stigma. Read the stories.</p>
 		</div>
 	</div>
+	
 	<div class="mainDiv">
 
 		<%
@@ -194,7 +206,14 @@
 
 					out.print("<div style=\"float:left; margin-top: 20px;\"><h3>");
 					//out.print(rset.getString("name"));
-					out.print("anonymous' story:");
+					if (numAlias != 0) {
+						aliasSet.absolute((int) Math.floor(Math.random()
+								* numAlias));
+						out.print(aliasSet.getString("alias") + "'s");
+					} else {
+						out.print("anonymous'");
+					}
+					out.print(" story:");
 					out.print("</h3></div>");
 
 					out.print("<div style=\"float:right; margin-top: 20px;\"><h3>");
