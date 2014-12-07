@@ -1,6 +1,5 @@
 @CHARSET "UTF-8";
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300,700);
-@import url(http://fonts.googleapis.com/css?family=Asap:700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
 @import url(http://fonts.googleapis.com/css?family=Halant:500);
 
 html, body {
@@ -21,14 +20,20 @@ h1 {
 h4 {
 	font-family: 'Open Sans', Arial, sans;
     font-weight: 700;
-	margin-left: 20px;
 	text-transform: uppercase;
 }
+h3 {
+    font-family: 'Open Sans', serif;
+    font-weight: 700;
+    color: #323847;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
 h2 {
-    font-family: 'Halant', serif;
-    font-weight: 500;
-    margin-left: 10px;
-    color: #74abc7;
+    font-family: 'Open Sans', serif;
+    font-weight: 700;
+    color: #323847;
+    margin-top: 2px;
 }
 .dblogin:link {
     color: #ffffff;
@@ -47,7 +52,11 @@ h2 {
     font-size: 150%;
     color: #74abc7;
 }
-
+.smallBold {
+	font-family: 'Open Sans', Arial, sans;
+	font-weight: 600;
+	font-size: 80%;
+}
 .boldTxt {
 	font-family: 'Open Sans', Arial, sans;
     font-weight: 400;
@@ -192,14 +201,14 @@ a:active {
 }
 /* RESTAURANT PAGE */
 .rName {
-	font-family: 'Asap', Arial, sans;
+	font-family: 'Open Sans', Arial, sans;
     font-weight: 700;
     text-transform: uppercase;
     font-size: 180%;
     color: #74abc7;
 }
 .reviews {
-    font-family: 'Asap', Arial, sans;
+    font-family: 'Open Sans', Arial, sans;
     font-weight: 700;
     font-size: 150%;
     color: #74abc7;
@@ -213,6 +222,20 @@ a:active {
 
 
 
+.verifiedImg {
+	margin-left: 11px;
+	background-image: url('../img/verified.png');
+	background-repeat: no-repeat;
+    width: 100px;
+    height: 37px;
+    padding-top: 10px;
+    padding-left: 40px;
+    
+    font-family: 'Open Sans', Arial, sans;
+    font-weight: 600;
+    font-size: 80%;
+    color: #939fbb;
+}
 .stars {
     width: 134px;
     height: 25px;
@@ -389,6 +412,13 @@ input#voteBtn {
 }
 .storyRight {
 	float: right;
-    width: 630px;
-
+    width: 610px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+hr {
+	display: block;
+	border: 0;
+	border-top: 1px solid #dadee8;
+	margin: 20px 0; padding: 0;
 }
