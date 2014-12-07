@@ -17,9 +17,9 @@
                 String uname = (String)session.getAttribute("email");
                 if (uname != null) {
                     out.print("Hi artemis. ");
-                    out.print("<a href=\"index.jsp\" class=\"dblogin\">Logout</a>");
+                    out.print("<a href=\"index.jsp\">Logout</a>");
                 } else {
-                    out.print("<a href=\"LoginHome.jsp\" class=\"dblogin\">Log In/Sign Up!</a>");
+                    out.print("<a href=\"LoginHome.jsp\">Log In/Sign Up!</a>");
                 }  
                 %>
             </div>
