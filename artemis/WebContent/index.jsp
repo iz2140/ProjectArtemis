@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@include file="init.jsp" %>
+
 <%
 	ResultSet rset = null;
 	try {
@@ -25,7 +26,20 @@
     <script src="js/jquery.usmap.js"></script>
     <script type="text/javascript">
     
-    
+    ResultSet mset = null;
+    try {
+    	/*------------ QUERY FOR STATE/N_REVIEWS------------*/
+    	//list of states, ordered by number of reviews
+    	//table name: visual
+    	//table values: state (string), n_reviews (int)
+    	sql = "SELECT * FROM visual";
+    	PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.clearParameters();
+        mset = pstmt.executeQuery();
+    	
+    }catch (SQLException e) {
+    	error_msg = e.getMessage();	
+    }
             
             $(document).ready(function() {
                 $('#map').usmap({
