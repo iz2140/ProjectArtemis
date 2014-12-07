@@ -246,7 +246,7 @@ rset.next();
             //--------------------------------------------------
             
             out.print("<div style=\"width: 600px; height: 30px; float:right; position:relative;\">");
-            out.print("<div style=\"height: 20px; position:absolute; bottom:0; right:5px;\" class=\"boldTxt\">" + revset.getDate("timestamp") + "</div>");
+            out.print("<div style=\"height: 20px; position:absolute; bottom:0; right:5px;\" class=\"boldTxt\">" + revset.getDate("date") + "</div>");
             out.print("</div><div style=\"clear:both;\"></div>");
 
             

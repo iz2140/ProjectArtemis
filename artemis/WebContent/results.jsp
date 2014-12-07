@@ -47,10 +47,10 @@
 	        	
 	        	/*------------ SEARCH BY CITY, ST ------------*/
 	        	//list of providers ordered by rating, where city and state matched user specified params
-	        	sql = "SELECT * FROM providers ";
-	        	sql += String.format("WHERE city='%s'", city);
-	        	sql += String.format(" AND state='%s'", state);
-	        	sql += " ORDER BY avg_rating DESC";
+	        	sql = "SELECT * FROM providers";
+	        	//sql += String.format("WHERE city='%s'", city);
+	        	//sql += String.format(" AND state='%s'", state);
+	        	sql += " ORDER BY num_reviews DESC";
 	        	pstmt = conn.prepareStatement(sql);
 	            pstmt.clearParameters();
 	            rset = pstmt.executeQuery();
@@ -314,9 +314,11 @@
             /* NEIGHBORHOOD / ADDRESS */
             out.print("<div style=\"margin-top: 14px; width: 358px; float:left;\">");
             out.print(rset.getString("address_1") + "<br>");
-            out.print(rset.getString("address_2"));
+            if (!rset.getString("address_2").equals("NULL"))	{
+            	out.print(rset.getString("address_2"));
+            	
+            }
             out.print("</div><div style=\"clear:both;\"></div>");
-            
             /* end results row */
             out.print("</div>");
             
