@@ -6,6 +6,7 @@
 
 <%
 	ResultSet mset = null;
+ResultSet stateInfo = null;
     try {
         /*------------ QUERY FOR STATE/N_REVIEWS------------*/
         //list of states, ordered by number of reviews
@@ -14,6 +15,11 @@
         String sql = "SELECT * FROM reviews_per_state";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         mset = pstmt.executeQuery();
+        
+        sql = "select * from stateservices;";
+        pstmt = conn.prepareStatement(sql);
+        stateInfo = pstmt.executeQuery();
+        
 
     }catch (SQLException e) {
         error_msg = e.getMessage(); 
@@ -42,7 +48,15 @@
     		   mapObj[_state] = {fill: '#aaa'};
     	}
     }
+    var stateData = {};
+    function addStateInfo(_state, _data) {
+    	stateData[_state] = _data;
+    }
     
+    function setStateData(_state) {
+    	
+    	$('#stateInfoDiv').html("<h2>" + _state + "</h2>" + stateData[_state]);
+    }
     <%
     if(mset != null) {
         while(mset.next()) {
@@ -54,6 +68,14 @@
         }
     } else {
         out.print(error_msg);
+    }
+    if (stateInfo != null) {
+        while (stateInfo.next()) {
+        	out.print("addStateInfo(\"" + stateInfo.getString("state") + "\",");
+            out.print("\"" + stateInfo.getString("abort_minor") + "\");");
+        	
+        	
+        }
     }
     %>
     
@@ -93,6 +115,9 @@
     	            break;
     	        }
 	    	   }
+	    	  setStateData(objSel.options[i].text);
+	    	  
+	    	  
 	    	  
 	    	  $(document.body).animate({
 	    		  'scrollTop': $('#input_form').offset().top
@@ -116,8 +141,14 @@
     <div class="mainDiv">
         <div id="map" style="padding-top: 50px; width: 800px; height: 550px;"></div>
         <div style="float:right;">*darker colors represent more service providers</div>
+        
+        
+        <div id="stateInfoDiv" style="clear:both; float:left; padding-top:50px; width: 400px; height: 400px;">
+        
+        
 
-        <div id="input_form" style="width: 800px; height: 400px; padding-top:50px; background-color:#ffffff;">
+        </div>
+        <div id="input_form" style="float:left; width: 400px; height: 400px; padding-top:50px;">
             <div style="margin:0px auto;">
                 <div>
                     <div class="title" style="height:32px;">I am looking for help with:</div>
@@ -194,14 +225,16 @@
 					<input type="radio" name="age" value="over">18+
 					<br>
 					<br>
+					<div style="float:right;">
 				    <input type="submit" value="Go">
+				    </div>
 					</form>
                     
                 </div>
             </div>
             
         </div>
-        
+        <div style="clear:both;"></div>
     </div>
         
    

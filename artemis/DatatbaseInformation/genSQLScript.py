@@ -5,6 +5,37 @@ def unicode_csv_reader(utf8_data, dialect=csv.excel, **kwargs):
     for row in csv_reader:
         yield [unicode(cell, 'utf-8') for cell in row]
 
+
+
+
+def writeStateServInsert(tablename, infile, outfile):
+    rows = []
+    reader = unicode_csv_reader(open(infile))
+    for row in reader:
+        rows.append(row)
+    
+    fields = rows[0]
+    data = rows[1:]
+    commands = []
+    for datum in data:
+        assert len(datum) == len(fields)
+        for ind, val in enumerate(datum):
+            if not val:
+                datum[ind] = 0
+            
+            else:
+                datum[ind] = val.encode('utf-8')
+
+        commands.append('INSERT INTO {table} ({field0}, {field1}, {field2}) VALUES ({val0}, "{val1}", "{val2}");\n'.format(table=tablename,field0=fields[0],
+            field1=fields[1],
+            field2=fields[2],  
+            val0=datum[0],
+            val1=datum[1],
+            val2=datum[2],))
+    with open(outfile, 'wb') as f:
+        for com in commands:
+            f.write(com)
+
 def writeAliasInsert(tablename, infile, outfile):
     rows = []
     reader = unicode_csv_reader(open(infile))
@@ -84,7 +115,7 @@ def writeUsersInsert(tablename, infile, outfile):
             else:
                 datum[ind] = val.encode('utf-8')
 
-        commands.append('INSERT INTO {table} ({field0}, {field1}, {field2}, {field3}, {field4}) VALUES ("{val0}", "{val1}", {val2}, "{val3}", "{val4}");\n'.format(table=tablename,field0=fields[0],
+        commands.append('INSERT INTO {table} ({field0}, {field1}, {field2}, {field3}, {field4}) VALUES ("{val0}", "{val1}", "{val2}", "{val3}", "{val4}");\n'.format(table=tablename,field0=fields[0],
             field1=fields[1], 
             field2=fields[2], 
             field3=fields[3],
@@ -239,4 +270,4 @@ if __name__ == "__main__":
    #writeUsersInsert("users", "users.csv", "users.sql")
    #writeProviderPicturesInsert("providerphotos", "providerphotos.csv", "providerphotos.sql")
    #writeAliasInsert("aliases", "aliases.csv", "aliases.sql")
-
+    writeStateServInsert("stateservices", "stateservices.csv", "stateservices.sql")
