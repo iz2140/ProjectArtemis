@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
-@import url(http://fonts.googleapis.com/css?family=Halant:500);
+@import url(http://fonts.googleapis.com/css?family=Halant:500,400);
 
 html, body {
     height: 100%;	
@@ -52,6 +52,7 @@ h2 {
     font-size: 150%;
     color: #192f5f;
 }
+
 .smallBold {
 	font-family: 'Open Sans', Arial, sans;
 	font-weight: 600;
@@ -122,7 +123,7 @@ input#searchBtn:hover, input#searchBtn:focus {
     height: 100%;
 	width:800px;
 	margin:0 auto;
-	padding-top: 84px;
+	padding-top: 120px;
 }
 
 /* RESULTS PAGE */
@@ -175,17 +176,26 @@ input#searchBtn:hover, input#searchBtn:focus {
     margin-top: 7px;
 }
 a:link {
-	color: #222222;
+	color: #ffffff;
 	text-decoration: none;
 }
 a:visited {
-	color: #222222;
+	color: #ffffff;
 }
 a:hover {
-	color: #5da9cf;
+	color: #617ec1;
 }
 a:active {
 	color: #7d96a3;
+}
+.navlinks {
+    float:left;
+    width: 120px;
+    
+    font-family: 'Halant', serif;
+    font-weight: 400;
+    font-size: 110%;
+    color: #ffffff;
 }
 
 #menuPage {

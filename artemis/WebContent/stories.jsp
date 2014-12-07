@@ -205,10 +205,9 @@
 					}
 
 					out.print("<div style=\"float:left; margin-top: 20px;\"><h3>");
-					//out.print(rset.getString("name"));
+					
 					if (numAlias != 0) {
-						aliasSet.absolute((int) Math.floor(Math.random()
-								* numAlias));
+						aliasSet.absolute(1 + (int) Math.floor(Math.random() * numAlias));
 						out.print(aliasSet.getString("alias") + "'s");
 					} else {
 						out.print("anonymous'");
