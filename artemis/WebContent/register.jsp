@@ -12,7 +12,7 @@
 <%@include file="header.jsp"%>
 <div class="mainDiv">
 
-
+<br>
 <div style="float:left; width:400px; height:100%;">
 	<form action="reg1.jsp" method="post">
      <div style="margin-top:20px;">
@@ -25,7 +25,7 @@
          </div>
          
          <div style="width:160px; height: 30px; padding-right: 10px; float:left; text-align:right;">
-             New User Password:
+             Password:
          </div>
          <div style="width:180px; height: 30px; float:left;">
              <input style="width: 150px;" type="password" name="password1" />
@@ -33,7 +33,8 @@
          
          
          <div style="width: 50px; margin-left:310px;">
-         <input type="submit" value="login"/>
+         <input type="hidden" name="user" value="old" />
+         <input type="submit" value="login" />
          </div>
      </div>
      <br>
@@ -69,7 +70,8 @@
          
          
          <div style="width: 50px; margin-left:310px;">
-         <input type="submit" value="register"/>
+         <input type="hidden" name="user" value="new" />
+         <input type="submit" value="register" />
          </div>
          
          <div style="padding-top:20px; height:100px; width:400px;">

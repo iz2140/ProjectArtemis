@@ -21,7 +21,7 @@
 
 		/*------------ STORIES ------------*/
 
-		sql = "SELECT * FROM reviews R ORDER BY timestamp DESC";
+		sql = "SELECT * FROM reviews R ORDER BY date DESC";
 
 		pstmt = conn.prepareStatement(sql);
 		rset = pstmt.executeQuery(); //SQL Query
@@ -216,7 +216,7 @@
 					out.print("</h3></div>");
 
 					out.print("<div style=\"float:right; margin-top: 20px;\"><h3>");
-					out.print(rset.getString("timestamp"));
+					out.print(rset.getString("date"));
 
 					out.print("</h3></div>");
 

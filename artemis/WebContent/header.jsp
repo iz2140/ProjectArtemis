@@ -12,17 +12,17 @@
 	                <div class="navlinks"><a href="stories.jsp">read stories</a></div>
 	                <div class="navlinks" style="margin-left:8px;"><a href="index.jsp">contact</a></div>
 	                
-	                <div class="navlinks" style="float:right;">
-                <%
-                String uname = (String)session.getAttribute("email");
-                if (uname != null) {
-                    out.print("Hi artemis. ");
-                    out.print("<a href=\"index.jsp\">Logout</a>");
-                } else {
-                    out.print("<a href=\"register.jsp\">Log In/Sign Up!</a>");
-                }  
-                %>
-            </div>
+	                <div class="navlinks" style="float:right; width:200px;">
+		                <%
+		                String uid = String.valueOf(session.getAttribute("u_id"));
+		                if (uid.equals("null")) {
+		                	out.print("<a href=\"register.jsp\">Log In/Sign Up!</a>");
+		                } else {
+		                	out.print("Hi artemis.  <a href=\"logout.jsp\">Logout?</a>");
+		                    
+		                }  
+		                %>
+		            </div>
 	                
                 </div>
         </div>

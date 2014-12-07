@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 
-<%@include file="header.jsp"%>
+
 <%@include file="init.jsp"%>
 <html>
 <head>
@@ -12,7 +12,7 @@
 <title>Tell Your Story</title>
 </head>
 <body>
-
+<%@include file="header.jsp"%>
 	<div class="mainDiv">
 <%-- 		
 		<%
@@ -45,7 +45,7 @@
 			System.out.println(error_msg);
 		}
 %>   
-		<form name="story" method="post" action="submitdb.jsp">
+		<form name="story" method="get" action="submitdb.jsp">
 			<table cellpadding="10" cellspacing="10" align="center">
 				<col width="230">
   				<col width="500">

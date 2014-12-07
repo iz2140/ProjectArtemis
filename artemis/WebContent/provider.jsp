@@ -28,7 +28,7 @@
         	
             
                 //sql += " ORDER BY avg_rating DESC";
-            sql = "SELECT * FROM reviews where p_id='" + p_id + "'";
+            sql = "SELECT * FROM reviews where p_id='" + p_id + "' ORDER BY date DESC";
             pstmt = conn.prepareStatement(sql);
             revset = pstmt.executeQuery();
             
@@ -53,15 +53,17 @@
 function gotoreview ()
 {
     <%
-    //if (uid != null) {
+    String usid = String.valueOf(session.getAttribute("u_id"));
+    if (usid.equals("null")) {
+    %>
+    alertBox("Please login first!!");
+    
+    <%
+    } else {
     %>
     document.reviewForm.submit();
     <%
-    //} else {
-    %>
-    //alertBox("Please login first!!");
-    <%
-    //}
+    }
     %>
 }
 

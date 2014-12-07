@@ -17,9 +17,11 @@
 	    ResultSet nset = null;
 	    
 	    String[] ser = request.getParameterValues("service"); //search param from prev page
-	    for (int i = 0; i < ser.length; i++) {
-	    	System.out.print(ser[i] + "\n");
-	    } 
+	    if (ser !=null ) {
+		    for (int i = 0; i < ser.length; i++) {
+		    	System.out.print(ser[i] + "\n");
+		    }
+	    }
 	    
 	    String city = request.getParameter("city");
 	    //System.out.print(city + "\n");

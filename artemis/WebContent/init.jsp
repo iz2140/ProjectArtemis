@@ -4,6 +4,8 @@
 <!-- Database connection and query -->
 
 <%
+
+		
 	Connection conn = null; //autocommit, commit(), rollback()
 	String error_msg = "";
 	String url = "jdbc:mysql://artemis.cdblqhavwyia.us-west-2.rds.amazonaws.com:3306/artemis";

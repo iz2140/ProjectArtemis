@@ -20,7 +20,8 @@
 <div style="width:600px; margin:0px auto; padding-top:10px;">
 
 <%
-   String usid=(String)session.getAttribute("email");
+String usid = String.valueOf(session.getAttribute("u_id"));
+   
    String stars=request.getParameter("moons");
    String comments=request.getParameter("comments").replace("'", "''");
    String p_id = request.getParameter("p_id");
@@ -33,10 +34,11 @@
    PreparedStatement ps = null;
    ResultSet rs = null;
   
+   
    try {
    
 	   //ps = conn.prepareStatement("insert into reviews (p_id, u_id, rating, review_text, timestamp) values ('"+p_id+"','"+usid+"','"+stars+"','"+comments+"','"+reviewDate+"')");
-	   ps = conn.prepareStatement("insert into reviews (p_id, u_id, rating, review_text) values ('"+p_id+"','"+usid+"','"+stars+"','"+comments+"')");
+	   ps = conn.prepareStatement("insert into reviews (p_id, u_id, rating, review_text, date) values ('"+p_id+"','"+usid+"','"+stars+"','"+comments+"','"+reviewDate+"')");
 
 	   int rows= ps.executeUpdate();
    
@@ -63,7 +65,7 @@
 	   //out.println("error: " + sqe);
    }
 %>
-<br><a href="index.jsp" class="button">Go Back?</a>
+
 </div></div></div>
 <%@include file="footer.jsp"%>
 </body>
