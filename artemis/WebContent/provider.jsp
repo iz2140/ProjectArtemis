@@ -17,6 +17,8 @@
         String sql;
         ResultSet rset = null;
         ResultSet revset = null;
+        ResultSet aliasSet = null;
+        int numAlias = 0;
         
         String p_id = request.getParameter("p_id");
         
@@ -36,6 +38,15 @@
             	revset.last();
                 numResults = revset.getRow();
                 revset.beforeFirst();
+            }
+            
+            aliasSet = null;
+            sql = "SELECT alias FROM aliases";
+            pstmt = conn.prepareStatement(sql);
+            aliasSet = pstmt.executeQuery();
+            if (aliasSet != null) {
+                aliasSet.last();
+                numAlias = aliasSet.getRow();
             }
             
         } catch (SQLException e) {
@@ -253,8 +264,23 @@ rset.next();
 
             
             out.print("<div class=\"boldTxt\" style=\"padding: 10px;\">");
-            out.print("anonymous says:");
+            //out.print("anonymous says:");
+            //out.print("</div>");
+            
+            //out.print("<div style=\"float:left; margin-top: 20px;\"><h3>");
+            
+            if (numAlias != 0) {
+                aliasSet.absolute(1 + (int) Math.floor(Math.random() * numAlias));
+                out.print(aliasSet.getString("alias") + " says:");
+            } else {
+                out.print("anonymous says:");
+            }
+            out.print(" story:");
+            //out.print("</h3></div>");
             out.print("</div>");
+            
+            
+            
             
             out.print("<div style=\"padding: 10px;\">");
             out.print(revset.getString("review_text"));

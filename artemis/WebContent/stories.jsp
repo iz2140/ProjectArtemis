@@ -59,7 +59,7 @@
 			Silence is the most crippling inhibitor to free thought. In order for
 			us as a nation to start moving forward with preventing gender violence
 			and oppression, we must first listen and understand the words of
-			those who’ve lived through it. Below you'll find numerous testimonies
+			those who've lived through it. Below you'll find numerous testimonies
 			of women who have gone to clinics, community shelters, health
 			facilities, sexual assault centers, and their thoughts on them.
 
