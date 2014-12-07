@@ -41,16 +41,12 @@
 <body>
     <%@include file="header.jsp" %>
     
-    <div style="width:100%; height:300px; background-color:#f6f6f6; margin:0px 0px; margin-top: 86px; padding:10px 10px 0px 0px;">
-        
+        <div style="width:100%; height:300px; background-color:#f6f6f6; margin:0px 0px; margin-top: 86px; padding:10px 10px 0px 0px;">
             <div style="width: 800px; margin:0px auto; margin-top: 90px;">
                 <h1>Real Stories by Real Women.</h1>
-                
                 Violence against women is one of the most widespread of human rights abuses. One out of every three women worldwide will be physically, sexually or otherwise abused during her lifetime. During times of war and conflict, sexual violence is used to terrorize and humiliate women and girls. Survivors often suffer further victimization by family and society. The International Rescue Committee works to break this cycle of violence by helping survivors 
             </div>
-        
         </div>
-        
     <div class="mainDiv">
     
     <%
@@ -90,50 +86,18 @@
         
         /* ------------------ STORIES -------------------*/
         while (rset.next()) {
+        	if (count != 0)
+        		out.print("<hr>");
+        	
         	count++;
         	
         	if (count < pageMin || count > pageMax) {
         		continue;
         	}
         	
-        	
         	out.print("<div class=\"storyRow\">");
-        	
         	out.print("<div class=\"storyLeft\">");
         	
-        	out.print("asdfasdfasdf");
-        	
-        	out.print("</div>");
-        	
-        	
-        	out.print("<div class=\"storyRight\">");
-        	
-        	/* NAME OF RESTAURANT */
-            pset = null;
-            String cat;
-            try {
-                sql = "select * from providers where p_id='" + rset.getInt("p_id") + "'";
-                pstmt = conn.prepareStatement(sql);
-                pstmt.clearParameters();
-                pset = pstmt.executeQuery();
-                
-                if (pset.next()) {
-                	
-                	out.print("<h4>");
-                    out.print(pset.getString("name"));
-                    /*while (pset.next()) {
-                        out.print(", " + pset.getString("c_name"));
-                    }*/
-                    out.print("</h4>");
-                    
-                    
-                }
-                
-            } catch (SQLException e) {
-                error_msg = e.getMessage();
-                System.out.println(error_msg);
-            }
-            
         	//STARS---------------------------------------------
             out.print("<div class=\"stars\" style=\"margin-left: 18px; margin-top: 8px;\">");
             double sd = rset.getDouble("rating");
@@ -147,16 +111,97 @@
             out.print("<div class=\"starsImg\"></div>");
             out.print("</div></div>");
             //--------------------------------------------------
+        	
             
-            out.print("<div style=\"clear:both;\">");
+            /* SERVICES USED */
+            String serv = rset.getString("serv_used");
+            out.print("<div style=\"clear:both; float:left; padding-left: 10px; margin-top: 41px;\">");
+           
+            pset = null;
+            try {
+                sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA='artemis' AND TABLE_NAME='services'";
+                pstmt = conn.prepareStatement(sql);
+                pset = pstmt.executeQuery();
+                
+                pset.next();
+                
+                out.print("<div class=\"smallBold\">");
+                out.print("<ul style=\"padding-left:35px;\">");
+                int ct = 0;
+                while (pset.next()) {
+                    
+                	if (serv.substring(ct, ct+1).equals("1")) {
+	                	out.print("<li>");
+	                    out.print(pset.getString(1).replace('_', ' '));
+	                    out.print("</li>");
+                	}
+                    
+                    ct++;
+
+                }
+                out.print("</ul>");
+                out.print("</div>");
+                
+            } catch (SQLException e) {
+                error_msg = e.getMessage();
+                System.out.println(error_msg);
+            }
+            
+            if (rset.getInt("verified") == 1) {
+            	out.print("<div class=\"verifiedImg\">verified review</div>");
+            }
+            
+            
+            
+        	out.print("</div></div>");
+        	
+        	
+        	out.print("<div class=\"storyRight\">");
+        	
+        	/* NAME OF PROVIDER */
+            pset = null;
+            try {
+                sql = "select * from providers where p_id='" + rset.getInt("p_id") + "'";
+                pstmt = conn.prepareStatement(sql);
+                pset = pstmt.executeQuery();
+                
+                if (pset.next()) {
+                	
+                	out.print("<h3 style=\"margin-top:6px;\">");
+                    out.print("@ " + pset.getString("name"));
+                    /*while (pset.next()) {
+                        out.print(", " + pset.getString("c_name"));
+                    }*/
+                    out.print("</h3>");
+                    
+                    out.print("<h3 style=\"margin-left:23px;\">");
+                    out.print(pset.getString("city") + ", " + pset.getString("state"));
+                    out.print("</h3>");
+                    
+                }
+                
+            } catch (SQLException e) {
+                error_msg = e.getMessage();
+                System.out.println(error_msg);
+            }
+            
+        	
+            
+            out.print("<div style=\"float:left; margin-top: 20px;\"><h3>");
             //out.print(rset.getString("name"));
-            out.print("anonymous says...");
-            out.print("</div>");
+            out.print("anonymous' story:");
+            out.print("</h3></div>");
             
-            out.print("<div style=\"clear:both;\">");
+            out.print("<div style=\"float:right; margin-top: 20px;\"><h3>");
+            out.print(rset.getString("timestamp"));
             
+            out.print("</h3></div>");
+            
+            out.print("<div style=\"clear:both; float:left; margin-top: 10px;\">");
             out.print(rset.getString("review_text"));
             out.print("</div>");
+            
+            
             /* LINK */
             
             

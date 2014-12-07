@@ -5,13 +5,19 @@
 <%@include file="init.jsp" %>
 
 <%
-	ResultSet rset = null;
-	try {
-		Statement stmt = conn.createStatement();
-		rset = stmt.executeQuery("SHOW TABLES");
-	} catch (SQLException e) {
-		error_msg = e.getMessage();
-	}
+	ResultSet mset = null;
+    try {
+        /*------------ QUERY FOR STATE/N_REVIEWS------------*/
+        //list of states, ordered by number of reviews
+        //table name: visual
+        //table values: state (string), n_reviews (int)
+        String sql = "SELECT * FROM reviews_per_state";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        mset = pstmt.executeQuery();
+
+    }catch (SQLException e) {
+        error_msg = e.getMessage(); 
+    }
 %>
 
 <html>
@@ -25,60 +31,70 @@
     <script src="js/color.jquery.js"></script>
     <script src="js/jquery.usmap.js"></script>
     <script type="text/javascript">
-    
-    ResultSet mset = null;
-    try {
-    	/*------------ QUERY FOR STATE/N_REVIEWS------------*/
-    	//list of states, ordered by number of reviews
-    	//table name: visual
-    	//table values: state (string), n_reviews (int)
-    	sql = "SELECT * FROM reviews_per_state";
-    	PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.clearParameters();
-        mset = pstmt.executeQuery();
-    	
-    }catch (SQLException e) {
-    	error_msg = e.getMessage();	
+
+    var mapObj = {};
+    function colorState(_state, _num) {
+    	if (_num < 30) {
+    		   mapObj[_state] = {fill: '#eee'};
+    	} else if (_num < 65) {
+    		   mapObj[_state] = {fill: '#ccc'};
+    	} else {
+    		   mapObj[_state] = {fill: '#aaa'};
+    	}
     }
+    
+    <%
+    if(mset != null) {
+        while(mset.next()) {
+            /* color state on map */
             
-            $(document).ready(function() {
-                $('#map').usmap({
-                  /*'stateSpecificStyles': {
-                    'AK' : {fill: '#f00'}
-                  },*/
-                  /*'stateSpecificHoverStyles': {
-                  'HI' : {fill: '#ff0'}
-                    },*/
-                    
-                  'stateStyles': {
-                	  fill: '#aaaaaa',
-                	  "stroke-width": 2,
-                	  'stroke': '#999999'
-                  },
-                  'stateHoverStyles': {
-                	  fill: '#192f5f'
-                  },
-                  
-                  stateHoverAnimation: 100,
-                  showLabels: false,
-                  
-                  'mouseoverState': {
-                    'HI' : function(event, data) {
-                      //return false;
-                    }
-                  },
-                  
-                  
-                  'click' : function(event, data) {
-                    alert(data.name);
-                	  /*$('#alert')
-                      .text('Click '+data.name+' on map 1')
-                      .stop()
-                      .css('backgroundColor', '#ff0')
-                      .animate({backgroundColor: '#ddd'}, 1000);*/
-                  }
-                });
-            });
+            out.print("colorState(\"" + mset.getString("state") + "\",");
+            out.print(mset.getInt("n_reviews") + ");");
+            
+        }
+    } else {
+        out.print(error_msg);
+    }
+    %>
+    
+	$(document).ready(function() {
+	    $('#map').usmap({
+	      /*'stateSpecificStyles': {
+	        'AK' : {fill: '#f00'},
+	        'MA' : {fill: '#4f2'}
+	      },*/
+	      'stateSpecificStyles': mapObj,
+	      /*'stateSpecificHoverStyles': {
+	      'HI' : {fill: '#ff0'}
+	        },*/
+	        
+	      'stateStyles': {
+	    	  
+	    	  "stroke-width": 0,
+	    	  'stroke': '#999999'
+	      },
+	      'stateHoverStyles': {
+	    	  fill: '#192f5f'
+	      },
+	      
+	      stateHoverAnimation: 100,
+	      showLabels: false,
+	      
+	      'mouseoverState': {
+	        'HI' : function(event, data) {
+	          //return false;
+	        }
+	      },      
+	      'click' : function(event, data) {
+	        //alert(data.name);
+	    	  /*$('#alert')
+	          .text('Click '+data.name+' on map 1')
+	          .stop()
+	          .css('backgroundColor', '#ff0')
+	          .animate({backgroundColor: '#ddd'}, 1000);*/
+	      }
+	    });
+	});
                 
 
     </script>
@@ -174,22 +190,6 @@
             </div>
             
         </div>
-        
-        <%
-		if(rset != null) {
-			while(rset.next()) {
-				out.print("<tr>");
-				out.print("<td>" + rset.getString(1) + "</td>");
-				out.print("</tr>");
-			}
-		} else {
-			out.print(error_msg);
-		}
-		if( conn != null ) {
-			conn.close();
-		}
-		%>
-        
         
     </div>
         

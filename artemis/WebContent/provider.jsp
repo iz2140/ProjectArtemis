@@ -36,9 +36,6 @@ try	{
 	error_msg = e.getMessage();
 	System.out.println(error_msg);
 }
-while (rs.next()) {
-	System.out.println("next res");
-}
 %>
 <html>
 <head>
@@ -49,9 +46,10 @@ while (rs.next()) {
 <%
 // iterate through result set
 while (rs.next()) {
-	System.out.println("next res");
 	story = rs.getString("review_text");
-	out.print("<div><p>story</p></div>");
+	out.print("<div><p>");
+	out.print(story);
+	out.print("</p></div>");
 }
 %>
 </body>
