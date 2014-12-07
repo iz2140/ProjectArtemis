@@ -127,7 +127,7 @@ input#searchBtn:hover, input#searchBtn:focus {
 .resultRow {
 	position: relative;
 	width: 800px;
-	height: 160px;
+	height: 250px;
     background-color: #f7f7f7;
     margin-top: 20px;
 }
@@ -414,6 +414,18 @@ input#voteBtn {
 .storyRight {
 	float: right;
     width: 610px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.provResLeft {
+	float: left;
+    width: 170px;
+height:250px;
+}
+.provResRight {
+	float: right;
+    width: 610px;
+    height:250px;
     padding-left: 10px;
     padding-right: 10px;
 }
