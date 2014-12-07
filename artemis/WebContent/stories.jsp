@@ -137,36 +137,37 @@
 					String serv = rset.getString("serv_used");
 					out.print("<div style=\"clear:both; float:left; padding-left: 10px; margin-top: 41px;\">");
 
-					pset = null;
-					try {
-						sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA='artemis' AND TABLE_NAME='services'";
-						pstmt = conn.prepareStatement(sql);
-						pset = pstmt.executeQuery();
-
-						pset.next();
-
-						out.print("<div class=\"smallBold\">");
-						out.print("<ul style=\"padding-left:35px;\">");
-						int ct = 0;
-						while (pset.next()) {
-
-							if (serv.substring(ct, ct + 1).equals("1")) {
-								out.print("<li>");
-								out.print(pset.getString(1).replace('_', ' '));
-								out.print("</li>");
+					if (serv != null) {
+						pset = null;
+						try {
+							sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA='artemis' AND TABLE_NAME='services'";
+							pstmt = conn.prepareStatement(sql);
+							pset = pstmt.executeQuery();
+	
+							pset.next();
+	
+							out.print("<div class=\"smallBold\">");
+							out.print("<ul style=\"padding-left:35px;\">");
+							int ct = 0;
+							while (pset.next()) {
+	
+								if (serv.substring(ct, ct + 1).equals("1")) {
+									out.print("<li>");
+									out.print(pset.getString(1).replace('_', ' '));
+									out.print("</li>");
+								}
+	
+								ct++;
+	
 							}
-
-							ct++;
-
+							out.print("</ul>");
+							out.print("</div>");
+	
+						} catch (SQLException e) {
+							error_msg = e.getMessage();
+							System.out.println(error_msg);
 						}
-						out.print("</ul>");
-						out.print("</div>");
-
-					} catch (SQLException e) {
-						error_msg = e.getMessage();
-						System.out.println(error_msg);
 					}
-
 					if (rset.getInt("verified") == 1) {
 						out.print("<div class=\"verifiedImg\">verified review</div>");
 					}
