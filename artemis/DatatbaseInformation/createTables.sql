@@ -70,5 +70,8 @@ CREATE TABLE reviews (
 */
 
 
-
-
+CREATE TABLE stateservices (
+    s_id INT,
+    state VARCHAR(2000),
+    abort_minor VARCHAR(50),
+    PRIMARY KEY (s_id));
