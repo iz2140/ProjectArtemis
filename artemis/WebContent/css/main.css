@@ -3,6 +3,9 @@
 @import url(http://fonts.googleapis.com/css?family=Asap:700);
 @import url(http://fonts.googleapis.com/css?family=Halant:500);
 
+html, body {
+    height: 100%;	
+}
 body {
 	background-color: white;
 	font-family: 'Open Sans', Arial, sans;
@@ -105,12 +108,12 @@ input#searchBtn:hover, input#searchBtn:focus {
 }
 
 .mainDiv {
-	overflow: hidden;
-	width:800px;
+	min-height: 100%;
 	height: auto !important;
-	height: 100%;
+    height: 100%;
+	width:800px;
 	margin:0 auto;
-	margin-top: 84px;
+	padding-top: 84px;
 }
 
 /* RESULTS PAGE */
@@ -374,9 +377,18 @@ input#voteBtn {
 }
 
 .storyRow {
-    position: relative;
+	overflow: auto;
     width: 800px;
-    height: 160px;
     background-color: #ffffff;
     margin-top: 20px;
+}
+.storyLeft {
+	float: left;
+    width: 170px;
+
+}
+.storyRight {
+	float: right;
+    width: 630px;
+
 }
